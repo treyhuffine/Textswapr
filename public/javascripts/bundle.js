@@ -17,7 +17,7 @@ app
   //   controller: 'searchCtrl'
   // });
   //
-  .state('showUser', {url: '/users/:username', templateUrl: '/template/profile.html', controller: 'profileCtrl'})
+  .state('showUser', {url: '/users/:username', templateUrl: '/templates/profile.html', controller: 'profileCtrl'})
   .state('addBook', {url: '/items/new', templateUrl: '/templates/addBook.html', controller: 'submitBookCtrl'})
   .state('findBooks', {url: '/items', templateUrl: '/templates/bookIndex.html', controller: 'bookIndexCtrl'});
 
@@ -82,8 +82,16 @@ app
 });
 
 app
-.controller('profileCtrl', function($scope, $state, urls) {
-
+.controller('profileCtrl', function($scope, $state, $stateParams, $http, urls, User) {
+  $scope.user = {};
+  $http.get(urls.apiUrl + '/users/' + $stateParams.username)
+    .success(function(data) {
+      console.log(data);
+      $scope.user = data;
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
 });
 
 app
@@ -95,7 +103,19 @@ app
   };
   Book.getBooks = function() {
     return $http.get(urls.apiUrl + "/books")
-  }
+  };
 
   return Book;
+});
+
+app
+.factory('User', function($http, urls) {
+  var User = {};
+  // User.currentUser = {};
+  //
+  // User.getUser = function(userRequest) {
+  //   return $http.get(urls.apiUrl + "/users/" + userRequest);
+  // };
+
+  return User;
 });

@@ -7,7 +7,7 @@ app
   };
   Book.getBooks = function() {
     return $http.get(urls.apiUrl + "/books")
-  }
+  };
 
   return Book;
 });

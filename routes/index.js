@@ -2,6 +2,7 @@ var routes = function(passport, mongoose) {
   var express = require('express');
   var router = express.Router();
   var Twitter = require("twitter");
+  var User = require('../app/models/user');
 
   var Book = mongoose.model("Book", {
     ownerId: {type: String, required: true},
@@ -67,7 +68,16 @@ var routes = function(passport, mongoose) {
       res.json(books);
     })
   });
-
+  router.get('/users/:username', function(req, res, next) {
+    User.findOne({'twitter.username': new RegExp('^'+req.params.username+'$', "i")}).exec(function(err, user) {
+      if (err) {
+        console.log(err);
+        res.status(400).json({ error: "Could not find books" });
+        res.redirect('/');
+      }
+      res.json(user);
+    })
+  });
 
   return router;
 };
