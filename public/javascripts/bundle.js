@@ -16,7 +16,8 @@ app
   //   templateUrl: '/templates/home/search.html',
   //   controller: 'searchCtrl'
   // });
-  .state('addBook', {url: '/books/new', templateUrl: '/templates/addBook.html', controller: 'bookCtrl'});
+  .state('addBook', {url: '/items/new', templateUrl: '/templates/addBook.html', controller: 'submitBookCtrl'})
+  .state('findBooks', {url: '/items', templateUrl: '/templates/bookIndex.html', controller: 'bookIndexCtrl'});
 
 });
 
@@ -26,17 +27,17 @@ app
 });
 
 app
-  .controller("bookCtrl", function($scope, $http, urls, Book) {
-  console.log("IN BOOK CTRL");
-  $scope.addBook = function(book) {
-    Book.addBook(book)
-      .success(function(data){
-      console.log(data);
+.controller("bookIndexCtrl", function($scope, $http, urls, Book) {
+  console.log("book index");
+  $scope.books = [];
+  Book.getBooks()
+    .success(function(data) {
+      $scope.books = data;
+      console.log($scope.books);
     })
-      .catch(function(error) {
+    .catch(function(error) {
       console.log(error);
     });
-  };
 });
 
 app
@@ -60,6 +61,20 @@ app
       .catch(function(error) {
         console.log(error);
       });
+  };
+});
+
+app
+  .controller("submitBookCtrl", function($scope, $http, urls, Book) {
+  console.log("IN BOOK CTRL");
+  $scope.addBook = function(book) {
+    Book.addBook(book)
+      .success(function(data){
+      console.log(data);
+    })
+      .catch(function(error) {
+      console.log(error);
+    });
   };
 });
 

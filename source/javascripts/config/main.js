@@ -10,7 +10,8 @@ app
   //   templateUrl: '/templates/home/search.html',
   //   controller: 'searchCtrl'
   // });
-  .state('addBook', {url: '/books/new', templateUrl: '/templates/addBook.html', controller: 'bookCtrl'});
+  .state('addBook', {url: '/items/new', templateUrl: '/templates/addBook.html', controller: 'submitBookCtrl'})
+  .state('findBooks', {url: '/items', templateUrl: '/templates/bookIndex.html', controller: 'bookIndexCtrl'});
 
 });
 
