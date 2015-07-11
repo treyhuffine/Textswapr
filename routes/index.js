@@ -41,6 +41,27 @@ var routes = function(passport, mongoose) {
       res.json(savedBook);
     })
   });
+  router.get('/books', function(req, res, next) {
+    Book.find({}).limit(20).exec(function(err, books) {
+      if (err) {
+        console.log(err);
+        res.status(400).json({ error: "Could not find books" });
+      }
+      res.json(books);
+    })
+  });
+  router.get('/books/:isbn', function(req, res, next) {
+    Book.find({ ISBN: req.params.isbn }).limit(20).exec(function(err, books) {
+      if (err) {
+        console.log(err);
+        res.status(400).json({ error: "Could not find books" });
+      }
+      if (!books) {
+        res.status(404);
+      }
+      res.json(books);
+    })
+  });
 
 
   return router;

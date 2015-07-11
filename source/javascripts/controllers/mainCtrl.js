@@ -9,6 +9,15 @@ app
       })
       .catch(function(error) {
         console.log(error);
+      });
+  };
+  $scope.getBooks = function() {
+    Book.getBooks()
+      .success(function(data) {
+        console.log(data);
       })
-  }
+      .catch(function(error) {
+        console.log(error);
+      });
+  };
 });
