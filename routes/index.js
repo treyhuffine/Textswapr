@@ -16,8 +16,15 @@ var routes = function(passport, mongoose) {
   });
 
   router.get('/', function(req, res, next) {
-    res.render('index', { title: 'Express' });
+    console.log(req.user)
+    res.render('index', { user: req.user });
   });
+
+  router.get('/auth/logout', function(req, res, next) {
+    req.logout();
+    res.redirect("/");
+  });
+
 
 
   return router;
