@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html ng-app='textSwap'>
 <html>
   <head>
     <meta charset="utf-8">
@@ -8,7 +8,21 @@
     <link rel="icon" href="/img/book.png">
   </head>
   <body>
-    <h1>Hello World</h1>
+    <div class="navbar-fixed">
+      <nav>
+        <div class="nav-wrapper">
+          <a href="#!" class="brand-logo">TEXT SWAP</a>
+          <ul class="right hide-on-med-and-down">
+            <li><a href="/auth/twitter">LOGIN</a></li>
+            <li><a href="/auth/logout">LOGOUT</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div>
+      <h1>Hello World</h1>
+
+    </div>
 
     <script src="/packages/jquery/dist/jquery.min.js"></script>
     <script src="/packages/angular/angular.min.js"></script>
