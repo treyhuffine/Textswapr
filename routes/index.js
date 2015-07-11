@@ -1,7 +1,11 @@
-var routes = function(passport) {
+var routes = function(passport, mongoose) {
   var express = require('express');
   var router = express.Router();
   var Twitter = require("twitter");
+
+  var Book = mongoose.model("Book", {
+    title: {type: String, required: true, unique: true}
+  });
 
   router.get('/auth/twitter', passport.authenticate('twitter'));
 

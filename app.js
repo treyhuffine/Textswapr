@@ -32,7 +32,7 @@ require('./config/passport')(passport);
 app.use(passport.initialize());
 app.use(passport.session());
 
-var routes = require('./routes/index')(passport);
+var routes = require('./routes/index')(passport, mongoose);
 app.use('/', routes);
 // app.use('/users', users);
 
