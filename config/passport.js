@@ -29,7 +29,6 @@ module.exports = function(passport) {
     callbackURL     : configAuth.twitterAuth.callbackURL
   },
   function(token, tokenSecret, profile, done) {
-
     // make the code asynchronous
     // User.findOne won't fire until we have all our data back from Twitter
     process.nextTick(function() {
@@ -49,11 +48,16 @@ module.exports = function(passport) {
           var newUser                 = new User();
 
           // set all of the user data that we need
-          newUser.twitter.id          = profile.id;
-          newUser.twitter.token       = token;
-          newUser.twitter.tokenSecret = tokenSecret;
-          newUser.twitter.username    = profile.username;
-          newUser.twitter.displayName = profile.displayName;
+
+          var fullSizeImage = profile._json.profile_image_url.replace('_normal', '');
+
+          newUser.twitter.id              = profile.id;
+          newUser.twitter.token           = token;
+          newUser.twitter.tokenSecret     = tokenSecret;
+          newUser.twitter.username        = profile.username;
+          newUser.twitter.displayName     = profile.displayName;
+          newUser.twitter.profileImageUrl = fullSizeImage;
+          newUser.twitter.location        = profile._json.profile_location.name;
 
           // save our user into the database
           newUser.save(function(err) {
