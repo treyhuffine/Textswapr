@@ -13,8 +13,11 @@
         <div class="nav-wrapper">
           <a href="#!" class="brand-logo">TEXT SWAP</a>
           <ul class="right hide-on-med-and-down">
-            <li><a href="/auth/twitter">LOGIN</a></li>
-            <li><a href="/auth/logout">LOGOUT</a></li>
+            <% if (user) { %>
+              <a target="_self" href="/auth/logout">Logout</a>
+            <% } else { %>
+              <a target="_self" href="/auth/twitter">Login</a>
+            <% } %>
           </ul>
         </div>
       </nav>
