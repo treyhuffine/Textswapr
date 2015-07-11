@@ -10,6 +10,8 @@ app
   //   templateUrl: '/templates/home/search.html',
   //   controller: 'searchCtrl'
   // });
+  //
+  .state('showUser', {url: '/users/:username', templateUrl: '/template/profile.html', controller: 'profileCtrl'})
   .state('addBook', {url: '/items/new', templateUrl: '/templates/addBook.html', controller: 'submitBookCtrl'})
   .state('findBooks', {url: '/items', templateUrl: '/templates/bookIndex.html', controller: 'bookIndexCtrl'});
 
