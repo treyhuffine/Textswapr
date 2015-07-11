@@ -4,7 +4,8 @@ var routes = function(passport, mongoose) {
   var Twitter = require("twitter");
 
   var Book = mongoose.model("Book", {
-    owner: {type: String, required: true},
+    ownerId: {type: String, required: true},
+    ownerName: {type: String, required: true},
     createdAt: {type: Date, required: true, default: Date.now},
     title: {type: String, required: true},
     ISBN: {type: String, required: true},
@@ -34,7 +35,8 @@ var routes = function(passport, mongoose) {
   });
   router.post('/books', function(req, res, next) {
     var book = new Book(req.body);
-    book.owner = req.user.id;
+    book.ownerId = req.user.id;
+    book.ownerName = req.user.twitter.displayName;
     book.save(function(err, savedBook) {
       if (err) {
         res.status(400).json({ error: "Validation failed" });
