@@ -1,4 +1,4 @@
-angular.module('textSwap')
-  .controller("mainCtrl", function($scope) {
-
+app
+.controller("mainCtrl", function($scope) {
+  console.log("IN CTRL");
 });

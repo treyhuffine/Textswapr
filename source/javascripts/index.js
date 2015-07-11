@@ -1,5 +1,3 @@
-'use strict';
-
 var app = angular.module('textSwap', ['ui.router']);
 
 app.run(function() {
