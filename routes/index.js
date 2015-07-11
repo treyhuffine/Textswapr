@@ -4,7 +4,14 @@ var routes = function(passport, mongoose) {
   var Twitter = require("twitter");
 
   var Book = mongoose.model("Book", {
-    title: {type: String, required: true, unique: true}
+    owner: {type: String},
+    title: {type: String, required: true},
+    ISBN: {type: String, required: true},
+    condition: {type: String, required: true},
+    subject: {type: String, required: true},
+    author: {type: String, required: true},
+    edition: {type: String, required: true},
+    img: {type: String, required: true}
   });
 
   router.get('/auth/twitter', passport.authenticate('twitter'));
@@ -24,7 +31,16 @@ var routes = function(passport, mongoose) {
     req.logout();
     res.redirect("/");
   });
-
+  router.post('/books', function(req, res, next) {
+    var book = new Book(req.body);
+//    book.owner = req.user.id;
+    book.save(function(err, savedBook) {
+      if (err) {
+        res.status(400).json({ error: "Validation failed" });
+      }
+      res.json(savedBook);
+    })
+  });
 
 
   return router;
