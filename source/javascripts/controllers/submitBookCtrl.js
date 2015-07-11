@@ -1,5 +1,5 @@
 app
-  .controller("submitBookCtrl", function($scope, $http, $state, urls, Book) {
+  .controller("submitBookCtrl", function($scope, $state, urls, Book) {
   console.log("IN BOOK CTRL");
   $scope.addBook = function(book) {
     Book.addBook(book)

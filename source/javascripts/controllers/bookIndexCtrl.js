@@ -1,5 +1,5 @@
 app
-.controller("bookIndexCtrl", function($scope, $http, urls, Book) {
+.controller("bookIndexCtrl", function($scope, urls, Book) {
   console.log("book index");
   $scope.books = [];
   Book.getBooks()

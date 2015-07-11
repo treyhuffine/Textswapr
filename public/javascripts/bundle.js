@@ -29,7 +29,7 @@ app
 });
 
 app
-.controller("bookIndexCtrl", function($scope, $http, urls, Book) {
+.controller("bookIndexCtrl", function($scope, urls, Book) {
   console.log("book index");
   $scope.books = [];
   Book.getBooks()
@@ -67,7 +67,7 @@ app
 });
 
 app
-  .controller("submitBookCtrl", function($scope, $http, $state, urls, Book) {
+  .controller("submitBookCtrl", function($scope, $state, urls, Book) {
   console.log("IN BOOK CTRL");
   $scope.addBook = function(book) {
     Book.addBook(book)
@@ -79,6 +79,11 @@ app
       console.log(error);
     });
   };
+});
+
+app
+.controller('profileCtrl', function($scope, $state, urls) {
+
 });
 
 app
