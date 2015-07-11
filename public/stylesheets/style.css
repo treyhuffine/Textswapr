@@ -1,12 +1,21 @@
 body {
   background: #e8e8e8;
+/*  margin-right: 70px !important;*/
 }
 button {
   padding-bottom: 2px;
 }
+.card .card-content .card-title {
+  line-height: 4px !important;
+  font-size: 18px;
+  padding-top: 10px;
+}
+.book-container {
+  height: 380px;
+}
 .book-img {
-  height: 300px;
-  width: auto;
+  height: 290px;
+  width: 200px;
   padding-top: 10px;
 }
 .book-ico {
@@ -17,4 +26,13 @@ button {
 }
 .profile-container {
   margin-top: 20px;
+}
+.material-icons {
+  font-size: 20px;
+}
+.row.books {
+  padding-top: 30px;
+}
+.trade-button {
+  margin-top: 40px;
 }
