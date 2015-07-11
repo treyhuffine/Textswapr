@@ -5,6 +5,7 @@ var routes = function(passport, mongoose) {
 
   var Book = mongoose.model("Book", {
     owner: {type: String, required: true},
+    createdAt: {type: Date, required: true, default: Date.now},
     title: {type: String, required: true},
     ISBN: {type: String, required: true},
     condition: {type: String, required: true},
