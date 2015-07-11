@@ -57,7 +57,7 @@ module.exports = function(passport) {
           newUser.twitter.username        = profile.username;
           newUser.twitter.displayName     = profile.displayName;
           newUser.twitter.profileImageUrl = fullSizeImage;
-          newUser.twitter.location        = profile._json.profile_location.name;
+          newUser.twitter.location        = (profile._json.profile_location && profile._json.profile_location.name);
 
           // save our user into the database
           newUser.save(function(err) {
