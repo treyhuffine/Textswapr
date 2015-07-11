@@ -25,15 +25,27 @@ app
 });
 
 app
-.controller("mainCtrl", function($scope, $http, urls) {
+.controller("mainCtrl", function($scope, $http, urls, Book) {
   console.log("IN CTRL");
 
   $scope.addBook = function(book) {
-    $http.post(urls.apiUrl + "/books", book)
-    .success(function(data){
-      console.log(data);
-    }).catch(function(error) {
-      console.log(error);
-    })
+    Book.addBook(book)
+      .success(function(data){
+        console.log(data);
+      })
+      .catch(function(error) {
+        console.log(error);
+      })
   }
+});
+
+app
+.factory('Book', function($http, urls) {
+  var Book = {};
+
+  Book.addBook = function(book) {
+    return $http.post(urls.apiUrl + "/books", book);
+  };
+
+  return Book;
 });
