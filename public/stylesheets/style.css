@@ -4,3 +4,12 @@ body {
 button {
   padding-bottom: 2px;
 }
+.book-img {
+  height: 300px;
+  width: auto;
+  padding-top: 10px;
+}
+.book-ico {
+  margin-top: 5px;
+}
+
