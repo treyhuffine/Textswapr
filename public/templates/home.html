@@ -1,6 +1,6 @@
 <div ng-controller="mainCtrl" class="tags-controller">
    <div>
-    <h1 class="text-center">Submit a Book</h1>
+     <h1 class="text-center blue-grey-text text-darken-3">Submit a Book</h1>
   </div>
     <div class="row">
       <form ng-submit='addBook(book)' class="col s12">
@@ -10,7 +10,7 @@
             <label for="title">Title</label>
           </div>
           <div class="input-field col s6">
-            <input ng-model='book.ISBN' id="isbn" type="text" class="validate">
+            <input ng-model='book.ISBN' id="isbn" type="number" class="validate">
             <label for="isbn">ISBN</label>
           </div>
         </div>
@@ -44,9 +44,11 @@
             <label for="image">Image</label>
           </div>
         </div>
-        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-          <i class="material-icons">send</i>
-        </button>
+        <div class='row'>
+          <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+            <i class="material-icons">send</i>
+          </button>
+        </div>
 
       </form>
     </div>
