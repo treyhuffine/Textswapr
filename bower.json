@@ -1,9 +1,10 @@
 {
   "name": "textswap",
   "version": "0.0.0",
-  "homepage": "https://github.com/sean-blattenberger/textswap",
+  "homepage": "https://textswap.herokuapp.com",
   "authors": [
-    "blatt <sean.blattenberger@gmail.com>"
+    "blatt <sean.blattenberger@gmail.com>",
+    "Trey Huffine <treyhuffine@gmail.com>"
   ],
   "license": "MIT",
   "ignore": [
