@@ -4,12 +4,13 @@ app
 
   $urlRouterProvider.otherwise('/');
   $stateProvider
-  .state('home', {url: '/', templateUrl: '/templates/home.html'});
+  .state('home', {url: '/', templateUrl: '/templates/home.html'})
   // .state('search', {
   //   url: '/q/:query',
   //   templateUrl: '/templates/home/search.html',
   //   controller: 'searchCtrl'
   // });
+  .state('addBook', {url: '/books/new', templateUrl: '/templates/addBook.html', controller: 'bookCtrl'});
 
 });
 

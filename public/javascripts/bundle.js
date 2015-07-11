@@ -10,18 +10,33 @@ app
 
   $urlRouterProvider.otherwise('/');
   $stateProvider
-  .state('home', {url: '/', templateUrl: '/templates/home.html'});
+  .state('home', {url: '/', templateUrl: '/templates/home.html'})
   // .state('search', {
   //   url: '/q/:query',
   //   templateUrl: '/templates/home/search.html',
   //   controller: 'searchCtrl'
   // });
+  .state('addBook', {url: '/books/new', templateUrl: '/templates/addBook.html', controller: 'bookCtrl'});
 
 });
 
 app
 .constant('urls',{
   'apiUrl': ''
+});
+
+app
+  .controller("bookCtrl", function($scope, $http, urls, Book) {
+  console.log("IN BOOK CTRL");
+  $scope.addBook = function(book) {
+    Book.addBook(book)
+      .success(function(data){
+      console.log(data);
+    })
+      .catch(function(error) {
+      console.log(error);
+    });
+  };
 });
 
 app
