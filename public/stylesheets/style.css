@@ -12,4 +12,9 @@ button {
 .book-ico {
   margin-top: 5px;
 }
-
+.profile-image {
+  width: 200px;
+}
+.profile-container {
+  margin-top: 20px;
+}

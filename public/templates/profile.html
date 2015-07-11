@@ -1,17 +1,19 @@
-<div class="row">
-  <div class="col m4">
-    <img ng-src="{{user.twitter.profileImageUrl}}" alt="Profile"/>
-    <div class="profile-displayname">
-      {{user.twitter.displayName}}
+<div class="profile-container">
+  <div class="row">
+    <div class="col m4">
+      <img class="profile-image" ng-src="{{user.twitter.profileImageUrl}}" alt="Profile"/>
+      <div class="profile-displayname">
+        {{user.twitter.displayName}}
+      </div>
+      <div class="profile-username">
+        {{user.twitter.username}}
+      </div>
+      <div class="profile-username">
+        {{user.twitter.location}}
+      </div>
     </div>
-    <div class="profile-username">
-      {{user.twitter.username}}
+    <div class="col m7">
+      BOOKS
     </div>
-    <div class="profile-username">
-      {{user.twitter.location}}
-    </div>
-  </div>
-  <div class="col m7">
-    BOOKS
   </div>
 </div>
