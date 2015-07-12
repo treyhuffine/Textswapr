@@ -72,6 +72,9 @@ var routes = function(passport, mongoose) {
       res.json(books);
     })
   });
+  router.get('/currentUserData', function(req, res, next) {
+    res.json(req.user);
+  });
 
   return router;
 };

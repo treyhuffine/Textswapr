@@ -1,6 +1,6 @@
 var app = angular.module('textSwap', ['ui.router']);
 
-app.run(function() {
+app.run(function($rootScope) {
   console.log('Text Swap!');
 });
 
@@ -14,7 +14,6 @@ app
   .state('showUser', {url: '/users/:username', templateUrl: '/templates/profile.html', controller: 'profileCtrl'})
   .state('addBook', {url: '/books/new', templateUrl: '/templates/addBook.html', controller: 'submitBookCtrl'})
   .state('findBooks', {url: '/books', templateUrl: '/templates/bookIndex.html', controller: 'bookIndexCtrl'});
-
 });
 
 app
@@ -136,6 +135,9 @@ app
     User.currentUser = false;
     $rootScope.currentUser = false;
   }
+  User.getCurrentUserData = function() {
+    return $http.get('/currentUserData');
+  };
 
   return User;
 });

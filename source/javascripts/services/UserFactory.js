@@ -14,6 +14,9 @@ app
     User.currentUser = false;
     $rootScope.currentUser = false;
   }
+  User.getCurrentUserData = function() {
+    return $http.get('/currentUserData');
+  };
 
   return User;
 });
