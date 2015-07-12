@@ -1,5 +1,5 @@
 app
-.controller('profileCtrl', function($scope, $state, $stateParams, User, Book) {
+.controller('profileCtrl', function($scope, $rootScope, $state, $stateParams, User, Book) {
   $scope.user = {};
   $scope.userBooks = {};
 

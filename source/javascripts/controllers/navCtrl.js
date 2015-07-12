@@ -1,4 +1,4 @@
-app.controller('navCtrl', function($scope, User) {
+app.controller('navCtrl', function($scope, $rootScope, User) {
   $scope.setCurrentUser = function() {
     User.setCurrentUser();
   };

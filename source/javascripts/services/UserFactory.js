@@ -1,5 +1,5 @@
 app
-.factory('User', function($http, urls) {
+.factory('User', function($rootScope, $http, urls) {
   var User = {};
   User.currentUser = false;
 
@@ -8,9 +8,11 @@ app
   };
   User.setCurrentUser = function() {
     User.currentUser = true;
+    $rootScope.currentUser = true;
   }
   User.nullCurrentUser = function() {
     User.currentUser = false;
+    $rootScope.currentUser = false;
   }
 
   return User;
