@@ -77,15 +77,17 @@ var routes = function(passport, mongoose) {
     res.json(req.user);
   });
   router.delete('/books/:id', function(req, res, next) {
-    Book.findOneAndRemove({ '_id.$oid': req.params.id}, function (err, books){
+    console.log(req.params.id);
+    Book.findOneAndRemove({ '_id': req.params.id}, function (err, book){
       if (err) {
         console.log(err);
         res.status(400).json({ error: "Could not find books" });
       }
-      else {
-        console.log("Deleted: " + books);
-        res.status(200).json({ success: "book deleted" });
+      if (!book) {
+        res.status(404);
       }
+      console.log("Deleted: " + book);
+      res.json({ success: "book deleted" });
     })
   })
 
