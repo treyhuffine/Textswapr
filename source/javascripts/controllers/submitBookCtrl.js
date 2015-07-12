@@ -1,6 +1,6 @@
 app
 .controller("submitBookCtrl", function($scope, $rootScope, $state, Book, User) {
-  if ($rootScope.currentUser) {
+  if (!$rootScope.currentUser) {
     $state.go('home');
   }
   $scope.addBook = function(book) {
