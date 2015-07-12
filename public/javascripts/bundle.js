@@ -10,7 +10,7 @@ app
 
   $urlRouterProvider.otherwise('/');
   $stateProvider
-  .state('home', {url: '/', templateUrl: '/templates/home.html'})
+  .state('home', {url: '/', templateUrl: '/templates/home.html', controller: 'rootCtrl'})
   .state('showUser', {url: '/users/:username', templateUrl: '/templates/profile.html', controller: 'profileCtrl'})
   .state('addBook', {url: '/books/new', templateUrl: '/templates/addBook.html', controller: 'submitBookCtrl'})
   .state('findBooks', {url: '/books', templateUrl: '/templates/bookIndex.html', controller: 'bookIndexCtrl'});
@@ -41,6 +41,28 @@ app.controller('navCtrl', function($scope, $rootScope, User) {
   $scope.nullCurrentUser = function() {
     User.nullCurrentUser();
   }
+});
+
+app
+.controller("rootCtrl", function($scope, $rootScope, Book, User) {
+  $scope.addBook = function(book) {
+    Book.addBook(book)
+      .success(function(data){
+        console.log(data);
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  };
+  $scope.getBooks = function() {
+    Book.getBooks()
+      .success(function(data) {
+        console.log(data);
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  };
 });
 
 app
