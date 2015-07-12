@@ -1,6 +1,8 @@
 app
-  .controller("submitBookCtrl", function($scope, $state, Book) {
-
+.controller("submitBookCtrl", function($scope, $state, Book, User) {
+  if (!User.currentUser) {
+    $state.go('home');
+  }
   $scope.addBook = function(book) {
     Book.addBook(book)
     .success(function(data){

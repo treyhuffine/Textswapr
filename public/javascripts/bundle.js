@@ -23,8 +23,9 @@ app
 });
 
 app
-.controller("bookIndexCtrl", function($scope, Book) {
+.controller("bookIndexCtrl", function($scope, Book, User) {
   $scope.books = [];
+  console.log(User.currentUser);
   Book.getBooks()
     .success(function(data) {
       $scope.books = data;
@@ -35,7 +36,7 @@ app
 });
 
 app
-.controller("mainCtrl", function($scope, Book) {
+.controller("mainCtrl", function($scope, Book, User) {
   console.log("IN CTRL");
 
   $scope.addBook = function(book) {
@@ -59,18 +60,19 @@ app
 });
 
 app.controller('navCtrl', function($scope, User) {
-  $scope.loggedInUser = false;
-  $scope.setCurrentUser = function(user) {
-    $scope.loggedInUser = true;
+  $scope.setCurrentUser = function() {
+    User.setCurrentUser();
   };
   $scope.nullCurrentUser = function() {
-    $scope.loggedInUser = false;
+    User.nullCurrentUser();
   }
 });
 
 app
-  .controller("submitBookCtrl", function($scope, $state, Book) {
-
+.controller("submitBookCtrl", function($scope, $state, Book, User) {
+  if (!User.currentUser) {
+    $state.go('home');
+  }
   $scope.addBook = function(book) {
     Book.addBook(book)
     .success(function(data){
@@ -124,11 +126,17 @@ app
 app
 .factory('User', function($http, urls) {
   var User = {};
-  User.currentUser = {};
+  User.currentUser = false;
 
   User.getUser = function(username) {
     return $http.get(urls.apiUrl + "/users/" + username);
   };
+  User.setCurrentUser = function() {
+    User.currentUser = true;
+  }
+  User.nullCurrentUser = function() {
+    User.currentUser = false;
+  }
 
   return User;
 });

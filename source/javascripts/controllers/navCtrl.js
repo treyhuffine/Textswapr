@@ -1,9 +1,8 @@
 app.controller('navCtrl', function($scope, User) {
-  $scope.loggedInUser = false;
-  $scope.setCurrentUser = function(user) {
-    $scope.loggedInUser = true;
+  $scope.setCurrentUser = function() {
+    User.setCurrentUser();
   };
   $scope.nullCurrentUser = function() {
-    $scope.loggedInUser = false;
+    User.nullCurrentUser();
   }
 });
