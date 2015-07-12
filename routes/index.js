@@ -41,8 +41,8 @@ var routes = function(passport, mongoose) {
       res.json(books);
     })
   });
-  router.get('/books/:isbn', function(req, res, next) {
-    Book.find({ ISBN: req.params.isbn }).limit(20).exec(function(err, books) {
+  router.get('/books/:bookId', function(req, res, next) {
+    Book.findOne({ '_id': req.params.bookId }).exec(function(err, book) {
       if (err) {
         console.log(err);
         res.status(400).json({ error: "Could not find books" });
@@ -50,9 +50,21 @@ var routes = function(passport, mongoose) {
       if (!books) {
         res.status(404);
       }
-      res.json(books);
+      res.json(book);
     })
   });
+  // router.get('/books/search/:isbn', function(req, res, next) {
+  //   Book.find({ ISBN: req.params.isbn }).limit(20).exec(function(err, books) {
+  //     if (err) {
+  //       console.log(err);
+  //       res.status(400).json({ error: "Could not find books" });
+  //     }
+  //     if (!books) {
+  //       res.status(404);
+  //     }
+  //     res.json(books);
+  //   })
+  // });
   router.get('/users/:username', function(req, res, next) {
     User.findOne({'twitter.username': new RegExp('^'+req.params.username+'$', "i")}).exec(function(err, user) {
       if (err) {
@@ -106,7 +118,8 @@ var routes = function(passport, mongoose) {
       if (err) {
         res.status(400).json({error: "Swap failed"});
       }
-      res.json(savedTrade)
+      res.json(savedTrade);
+      res.redirect('/');
     });
   });
 
