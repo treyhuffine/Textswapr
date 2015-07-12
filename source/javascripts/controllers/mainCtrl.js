@@ -1,7 +1,5 @@
 app
 .controller("mainCtrl", function($scope, Book, User) {
-  console.log("IN CTRL");
-
   $scope.addBook = function(book) {
     Book.addBook(book)
       .success(function(data){

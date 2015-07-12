@@ -12,8 +12,8 @@ app
   $stateProvider
   .state('home', {url: '/', templateUrl: '/templates/home.html'})
   .state('showUser', {url: '/users/:username', templateUrl: '/templates/profile.html', controller: 'profileCtrl'})
-  .state('addBook', {url: '/items/new', templateUrl: '/templates/addBook.html', controller: 'submitBookCtrl'})
-  .state('findBooks', {url: '/items', templateUrl: '/templates/bookIndex.html', controller: 'bookIndexCtrl'});
+  .state('addBook', {url: '/books/new', templateUrl: '/templates/addBook.html', controller: 'submitBookCtrl'})
+  .state('findBooks', {url: '/books', templateUrl: '/templates/bookIndex.html', controller: 'bookIndexCtrl'});
 
 });
 
@@ -25,7 +25,6 @@ app
 app
 .controller("bookIndexCtrl", function($scope, Book, User) {
   $scope.books = [];
-  console.log(User.currentUser);
   Book.getBooks()
     .success(function(data) {
       $scope.books = data;
@@ -37,8 +36,6 @@ app
 
 app
 .controller("mainCtrl", function($scope, Book, User) {
-  console.log("IN CTRL");
-
   $scope.addBook = function(book) {
     Book.addBook(book)
       .success(function(data){
