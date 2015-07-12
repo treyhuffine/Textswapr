@@ -15,21 +15,22 @@ var routes = function(passport, mongoose) {
   });
 
   router.get('/', function(req, res, next) {
-    console.log(req.user)
     res.render('index', { user: req.user });
   });
 
   router.post('/books', function(req, res, next) {
-    var book = new Book(req.body);
-    book.ownerId = req.user.id;
-    book.ownerDisplayName = req.user.twitter.displayName;
-    book.ownerUsername = req.user.twitter.username;
-    book.save(function(err, savedBook) {
-      if (err) {
-        res.status(400).json({ error: "Validation failed" });
-      }
-      res.json(savedBook);
-    })
+    if (req.user) {
+      var book = new Book(req.body);
+      book.ownerId = req.user.id;
+      book.ownerDisplayName = req.user.twitter.displayName;
+      book.ownerUsername = req.user.twitter.username;
+      book.save(function(err, savedBook) {
+        if (err) {
+          res.status(400).json({ error: "Validation failed" });
+        }
+        res.json(savedBook);
+      });
+    }
   });
   router.get('/books', function(req, res, next) {
     Book.find({}).limit(20).exec(function(err, books) {
@@ -73,6 +74,7 @@ var routes = function(passport, mongoose) {
     })
   });
   router.get('/currentUserData', function(req, res, next) {
+    console.log(req.user);
     res.json(req.user);
   });
 
