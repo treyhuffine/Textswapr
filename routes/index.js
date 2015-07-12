@@ -65,6 +65,16 @@ var routes = function(passport, mongoose) {
       res.json(user);
     })
   });
+  router.get('/users/:username/books', function(req, res, next) {
+    Book.find({'ownerUsername': new RegExp('^'+req.params.username+'$', "i")}).exec(function(err, books) {
+      if (err) {
+        console.log(err);
+        res.status(400).json({ error: "Could not find books" });
+        res.redirect('/');
+      }
+      res.json(books);
+    })
+  });
 
   return router;
 };

@@ -13,7 +13,10 @@
       </div>
     </div>
     <div class="col m7">
-      BOOKS
+      <h4>Available Books:</h4>
+      <ul>
+        <li ng-repeat="book in userBooks">{{book.title}}</li>
+      </ul>
     </div>
   </div>
 </div>
