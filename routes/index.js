@@ -6,11 +6,12 @@ var routes = function(passport, mongoose) {
   var Book = require('../app/models/book');
 
   router.get('/auth/twitter', passport.authenticate('twitter'));
-
-  // handle the callback after twitter has authenticated the user
   router.get('/auth/twitter/callback', passport.authenticate('twitter', { failureRedirect: '/' }), function(req, res) {
-     // Successful authentication, redirect home.
-     res.redirect('/');
+    res.redirect('/');
+  });
+  router.get('/auth/logout', function(req, res, next) {
+    req.logout();
+    res.redirect("/");
   });
 
   router.get('/', function(req, res, next) {
@@ -18,10 +19,6 @@ var routes = function(passport, mongoose) {
     res.render('index', { user: req.user });
   });
 
-  router.get('/auth/logout', function(req, res, next) {
-    req.logout();
-    res.redirect("/");
-  });
   router.post('/books', function(req, res, next) {
     var book = new Book(req.body);
     book.ownerId = req.user.id;

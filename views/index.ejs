@@ -8,14 +8,16 @@
     <link rel="icon" href="/img/book.png">
   </head>
   <body>
-    <div class="navbar-fixed">
+    <div class="navbar-fixed" ng-controller="navCtrl">
       <nav class="teal lighten-2">
         <div class="nav-wrapper">
           <a href="#!" class="brand-logo lime-text text-lighten-5">TEXT SWAP</a>
           <ul class="right hide-on-med-and-down">
             <% if (user) { %>
+              {{setCurrentUser()}}
               <a target="_self" href="/auth/logout">Logout</a>
             <% } else { %>
+              {{nullCurrentUser()}}
               <a target="_self" href="/auth/twitter">Login</a>
             <% } %>
           </ul>
