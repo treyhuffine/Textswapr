@@ -101,6 +101,14 @@ app
     .catch(function(error) {
       console.log(error);
     });
+  $scope.deleteBook = function (book) {
+    Book.deleteBook(book)
+    .success(function(data) {
+      console.log("book deleted");
+    }).catch(function(error) {
+      console.log(error);
+    });
+  }
 });
 
 app
@@ -115,6 +123,9 @@ app
   };
   Book.getUsersBooks = function(username) {
     return $http.get(urls.apiUrl + "/users/" + username + "/books");
+  };
+  Book.deleteBook = function(removedBook) {
+    return $http.delete(urls.apiUrl + "/books/" + removedBook._id);
   };
 
   return Book;

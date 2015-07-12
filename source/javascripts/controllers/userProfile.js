@@ -18,4 +18,12 @@ app
     .catch(function(error) {
       console.log(error);
     });
+  $scope.deleteBook = function (book) {
+    Book.deleteBook(book)
+    .success(function(data) {
+      console.log("book deleted");
+    }).catch(function(error) {
+      console.log(error);
+    });
+  }
 });
