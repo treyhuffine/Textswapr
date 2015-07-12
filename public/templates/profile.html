@@ -15,14 +15,16 @@
             {{user.twitter.location}}
         </li>
       </ul>
-      <div class='dash-links'>
-        <a ui-sref='addBook' class="waves-effect waves-teal btn">Submit Book</a>
-      </div>
-      <div class='dash-links'>
-        <a ui-sref='findBooks' class="waves-effect waves-teal btn">Browse Books</a>
-      </div>
-      <div class='dash-links'>
-        <a class="waves-effect waves-teal btn">Pending Trades</a>
+      <div class='profile-buttons' ng-show='currentUser && currentUserData.twitter.username === user.twitter.username'>
+        <div class='dash-links'>
+          <a ui-sref='addBook' class="waves-effect waves-teal btn">Submit Book</a>
+        </div>
+        <div class='dash-links'>
+          <a ui-sref='findBooks' class="waves-effect waves-teal btn">Browse Books</a>
+        </div>
+        <div class='dash-links'>
+          <a class="waves-effect waves-teal btn">Pending Trades</a>
+        </div>
       </div>
     </div>
     <div class="col m7">
