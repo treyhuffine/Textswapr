@@ -22,46 +22,6 @@ app
 });
 
 app
-.factory('Book', function($http, urls) {
-  var Book = {};
-
-  Book.addBook = function(book) {
-    return $http.post(urls.apiUrl + "/books", book);
-  };
-  Book.getBooks = function() {
-    return $http.get(urls.apiUrl + "/books");
-  };
-  Book.getUsersBooks = function(username) {
-    return $http.get(urls.apiUrl + "/users/" + username + "/books");
-  };
-
-  return Book;
-});
-
-app
-.factory('User', function($rootScope, $http, urls) {
-  var User = {};
-  User.currentUser = false;
-
-  User.getUser = function(username) {
-    return $http.get(urls.apiUrl + "/users/" + username);
-  };
-  User.setCurrentUser = function() {
-    User.currentUser = true;
-    $rootScope.currentUser = true;
-  }
-  User.nullCurrentUser = function() {
-    User.currentUser = false;
-    $rootScope.currentUser = false;
-  }
-  User.getCurrentUserData = function() {
-    return $http.get('/currentUserData');
-  };
-
-  return User;
-});
-
-app
 .controller("bookIndexCtrl", function($scope, $rootScope, Book, User) {
   $scope.books = [];
   Book.getBooks()
@@ -140,4 +100,44 @@ app
     .catch(function(error) {
       console.log(error);
     });
+});
+
+app
+.factory('Book', function($http, urls) {
+  var Book = {};
+
+  Book.addBook = function(book) {
+    return $http.post(urls.apiUrl + "/books", book);
+  };
+  Book.getBooks = function() {
+    return $http.get(urls.apiUrl + "/books");
+  };
+  Book.getUsersBooks = function(username) {
+    return $http.get(urls.apiUrl + "/users/" + username + "/books");
+  };
+
+  return Book;
+});
+
+app
+.factory('User', function($rootScope, $http, urls) {
+  var User = {};
+  User.currentUser = false;
+
+  User.getUser = function(username) {
+    return $http.get(urls.apiUrl + "/users/" + username);
+  };
+  User.setCurrentUser = function() {
+    User.currentUser = true;
+    $rootScope.currentUser = true;
+  }
+  User.nullCurrentUser = function() {
+    User.currentUser = false;
+    $rootScope.currentUser = false;
+  }
+  User.getCurrentUserData = function() {
+    return $http.get('/currentUserData');
+  };
+
+  return User;
 });

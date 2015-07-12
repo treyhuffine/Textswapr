@@ -1,22 +1,30 @@
-<div class="tags-controller home-container">
+ <div class="tags-controller home-container">
+<div class="opacity-wrapper">
   <div class='row'>
-    <div ng-hide='{{currentUser}}' class="card small col s6">
-      <div class='card-content'>
-        <span class="card-title activator grey-text text-darken-4">Login Now</span>
-        <p><a target="_self" href="/auth/twitter">Login</a></p>
-      </div>
+   <div class="card small col m4 s10 offset-s1 offset-m1 splash-card">
+    <div ng-hide='{{currentUser}}' class="splash-login">
+      <span class="grey-text text-darken-4 login-text">Login now</span>
+      <br>
+      <a target="_self" href="/auth/twitter" class="waves-effect waves-light btn">Login</a>
     </div>
-     <div ng-show='{{currentUser}}' class="card small col s6">
-      <div class='card-content'>
-        <span class="card-title activator grey-text text-darken-4">Trade Books</span>
-        <p><a ui-sref="addBook" >Submit a Book</a></p>
-      </div>
+    <div ng-show='{{currentUser}}' class="splash-view">
+      <span class="card-title activator grey-text text-darken-4 view-text">View your profile</span>
+      <br>
+      <a ui-sref="showUser" class="waves-effect waves-light btn">Profile</a>
     </div>
-     <div class="card small col s6">
-      <div class='card-content'>
-        <span class="card-title activator grey-text text-darken-4">Browse books</span>
-        <p><a ui-sref="findBooks">Browse</a></p>
-      </div>
+    <div class="splash-or">
+      <h3>OR</h3>
+    </div>
+    <div class="splash-browse">
+      <span class="grey-text text-darken-4 browse-text">Browse books</span>
+      <br>
+      <a ui-sref="findBooks" class="waves-effect waves-light btn">Browse</a>
+    </div>
+    </div>
+    <div class="textswap-wrapper col offset-m1 m6">
+      <h2 class="textswap-intro">TextSwap</h2>
+      <h3>Online marketplace to trade your college textbooks</h3>
     </div>
   </div>
+</div>
 </div>

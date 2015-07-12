@@ -6,11 +6,10 @@ button {
   padding-bottom: 2px;
 }
 .home-container {
-  background-image: url(/img/book-shelf.jpg);
+  background-image: url(/img/lib.jpg);
   background-size: cover;
   background-repeat: no-repeat;
-  width: 100vw;
-  height: 100vh;
+  height: 92vh;
 }
 .card .card-content .card-title {
   line-height: 4px !important;
@@ -42,4 +41,38 @@ button {
 }
 .trade-button {
   margin-top: 40px;
+}
+.splash-card {
+  margin-top: 25vh !important;
+  background-color: rgba(219, 221, 222, 0.79) !important;
+}
+.splash-login, .splash-view {
+  text-align: center;
+  margin-top: 1vh;
+  margin-bottom: 2vh;
+}
+.splash-browse {
+  text-align: center;
+  margin-top: 1.2vh;
+  margin-bottom: 2vh;
+}
+.splash-or {
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
+  text-align: center;
+  color: gray;
+}
+.login-text, .view-text, .browse-text {
+  font-size: 2rem;
+}
+.opacity-wrapper {
+  background-color: rgba(0, 0, 0, 0.53) !important;
+  width: 100vw;
+  height: 92vh;
+}
+.textswap-wrapper {
+  color: rgba(221, 247, 242, 0.78);
+}
+.textswap-wrapper {
+  margin-top: 25vh !important;
 }
