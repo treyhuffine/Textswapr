@@ -45,7 +45,6 @@ app.controller('navCtrl', function($scope, $rootScope, User, $http, urls) {
   User.getCurrentUserData()
     .success(function(data) {
       $rootScope.currentUserData = data;
-      console.log($rootScope.currentUserData);
     })
     .catch(function(error) {
       console.log(error);
@@ -54,7 +53,7 @@ app.controller('navCtrl', function($scope, $rootScope, User, $http, urls) {
 
 app
 .controller("rootCtrl", function($scope, $rootScope, Book, User) {
-  console.log($rootScope.currentUserData);
+
   // $scope.getBooks = function() {
   //   Book.getBooks()
   //     .success(function(data) {

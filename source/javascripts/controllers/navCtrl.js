@@ -8,7 +8,6 @@ app.controller('navCtrl', function($scope, $rootScope, User, $http, urls) {
   User.getCurrentUserData()
     .success(function(data) {
       $rootScope.currentUserData = data;
-      console.log($rootScope.currentUserData);
     })
     .catch(function(error) {
       console.log(error);
