@@ -1,5 +1,5 @@
 app
-.controller("mainCtrl", function($scope, $http, urls, Book) {
+.controller("mainCtrl", function($scope, Book) {
   console.log("IN CTRL");
 
   $scope.addBook = function(book) {

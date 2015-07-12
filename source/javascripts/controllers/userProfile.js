@@ -1,5 +1,5 @@
 app
-.controller('profileCtrl', function($scope, $state, $stateParams, $http, urls, User) {
+.controller('profileCtrl', function($scope, $state, $stateParams, User) {
   $scope.user = {};
 
   User.getUser($stateParams.username)

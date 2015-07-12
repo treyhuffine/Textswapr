@@ -23,7 +23,7 @@ app
 });
 
 app
-.controller("bookIndexCtrl", function($scope, urls, Book) {
+.controller("bookIndexCtrl", function($scope, Book) {
   console.log("book index");
   $scope.books = [];
   Book.getBooks()
@@ -37,7 +37,7 @@ app
 });
 
 app
-.controller("mainCtrl", function($scope, $http, urls, Book) {
+.controller("mainCtrl", function($scope, Book) {
   console.log("IN CTRL");
 
   $scope.addBook = function(book) {
@@ -61,12 +61,11 @@ app
 });
 
 app
-  .controller("submitBookCtrl", function($scope, $state, urls, Book) {
-  console.log("IN BOOK CTRL");
+  .controller("submitBookCtrl", function($scope, $state, Book) {
+
   $scope.addBook = function(book) {
     Book.addBook(book)
     .success(function(data){
-      console.log(data);
       $state.go('home');
     })
     .catch(function(error) {
@@ -76,7 +75,7 @@ app
 });
 
 app
-.controller('profileCtrl', function($scope, $state, $stateParams, $http, urls, User) {
+.controller('profileCtrl', function($scope, $state, $stateParams, User) {
   $scope.user = {};
 
   User.getUser($stateParams.username)
