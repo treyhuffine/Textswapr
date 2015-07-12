@@ -1,12 +1,12 @@
 <div class="tags-controller">
   <div class='row'>
-    <div class="card small col s6">
+    <div ng-hide='{{currentUser}}' class="card small col s6">
       <div class='card-content'>
         <span class="card-title activator grey-text text-darken-4">Login Now</span>
         <p><a target="_self" href="/auth/twitter">Login</a></p>
       </div>
     </div>
-     <div class="card small col s6">
+     <div ng-show='{{currentUser}}' class="card small col s6">
       <div class='card-content'>
         <span class="card-title activator grey-text text-darken-4">Trade Books</span>
         <p><a ui-sref="addBook" >Submit a Book</a></p>
