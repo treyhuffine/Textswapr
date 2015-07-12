@@ -36,7 +36,10 @@
           <p>{{book.author}} <br>
             {{book.edition}}
           </p>
-          <a class="waves-effect waves-teal btn secondary-content"><i class="material-icons">swap_horiz</i>Initiate Swap</a>
+          <span ng-show='currentUser'>
+            <span ng-hide="currentUserData.twitter.username === user.twitter.username"><a class="waves-effect waves-teal btn secondary-content"><i class="material-icons">swap_horiz</i>Initiate Swap</a></span>
+            <span ng-show='currentUserData.twitter.username === user.twitter.username'><a class="waves-effect waves-teal btn secondary-content"><i class="material-icons">swap_horiz</i>Delete Book</a></span>
+          </span>
         </li>
       </ul>
     </div>
