@@ -15,10 +15,11 @@
           <ul class="right hide-on-med-and-down">
             <% if (thisUserData) { %>
               {{setCurrentUser()}}
-              <a target="_self" href="/auth/logout">Logout</a>
+              <li><a target="_self" ui-sref="showUser({username: currentUserData.twitter.username})">Dashboard</a></li>
+              <li><a target="_self" href="/auth/logout">Logout</a></li>
             <% } else { %>
               {{nullCurrentUser()}}
-              <a target="_self" href="/auth/twitter">Login</a>
+              <li><a target="_self" href="/auth/twitter">Login</a></li>
             <% } %>
           </ul>
         </div>

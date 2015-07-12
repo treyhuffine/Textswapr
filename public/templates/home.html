@@ -8,9 +8,9 @@
         <a target="_self" href="/auth/twitter" class="waves-effect waves-light btn">Login</a>
       </div>
       <div ng-show='{{currentUser}}' class="splash-view">
-        <span class="card-title activator grey-text text-darken-4 view-text">View your profile</span>
+        <span class="card-title activator grey-text text-darken-4 view-text">View your dashboard</span>
         <br>
-        <a ui-sref="showUser({username: currentUserData.twitter.username})" class="waves-effect waves-light btn">Profile</a>
+        <a ui-sref="showUser({username: currentUserData.twitter.username})" class="waves-effect waves-light btn">Dashboard</a>
       </div>
       <div class="splash-or">
         <h3>OR</h3>
