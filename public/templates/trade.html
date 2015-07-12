@@ -1,2 +1,24 @@
-<h3>{{requestedBook}}</h3>
-<h3>{{currentUserBooks}}</h3>
+<div class='container'>
+   <div class="row">
+      <div col l6 s12>
+       <div class="card">
+        <div class="card-image waves-effect waves-block waves-light">
+          <img class="activator" src="{{requesedtBook.img}}">
+        </div>
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
+          <p><a href="#">This is a link</a></p>
+        </div>
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+          <p>Here is some more information about this product that is only revealed once clicked on.</p>
+        </div>
+      </div>
+    </div>
+    <div class=col l6 s12>
+      <select ng-model="bookToTrade">
+        <option ng-repeat="book in currentUserBooks" value="{{book.title}}">{{book.title}}</option>
+      </select>
+    </div>
+  </div>
+</div>

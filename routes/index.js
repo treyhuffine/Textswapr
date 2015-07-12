@@ -50,6 +50,7 @@ var routes = function(passport, mongoose) {
       if (!books) {
         res.status(404);
       }
+      console.log(book);
       res.json(book);
     })
   });

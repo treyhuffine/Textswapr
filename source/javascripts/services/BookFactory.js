@@ -15,6 +15,7 @@ app
     return $http.delete(urls.apiUrl + "/books/" + removedBook._id);
   };
   Book.getBook = function(bookId) {
+    console.log("bookId: ", bookId);
     return $http.get(urls.apiUrl + "/books/" + bookId);
   };
 
