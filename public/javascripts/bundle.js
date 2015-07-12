@@ -2,6 +2,8 @@ var app = angular.module('textSwap', ['ui.router']);
 
 app.run(function($rootScope) {
   console.log('Text Swap!');
+  $rootScope.currentUser = false;
+  $rootScope.currentUserData = {};
 });
 
 app
@@ -141,6 +143,7 @@ app
   User.nullCurrentUser = function() {
     User.isLoggedIn = false;
     $rootScope.currentUser = false;
+    $rootScope.currentUserData = {};
   }
   User.getCurrentUserData = function() {
     return $http.get(urls.apiUrl + '/currentUserData');

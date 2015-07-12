@@ -13,6 +13,7 @@ app
   User.nullCurrentUser = function() {
     User.isLoggedIn = false;
     $rootScope.currentUser = false;
+    $rootScope.currentUserData = {};
   }
   User.getCurrentUserData = function() {
     return $http.get(urls.apiUrl + '/currentUserData');
