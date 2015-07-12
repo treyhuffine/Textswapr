@@ -13,7 +13,7 @@
         <div class="nav-wrapper">
           <a href="#!" class="brand-logo lime-text text-lighten-5">TEXT SWAP</a>
           <ul class="right hide-on-med-and-down">
-            <% if (user) { %>
+            <% if (thisUserData) { %>
               {{setCurrentUser()}}
               <a target="_self" href="/auth/logout">Logout</a>
             <% } else { %>

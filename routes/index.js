@@ -13,9 +13,8 @@ var routes = function(passport, mongoose) {
     req.logout();
     res.redirect("/");
   });
-
   router.get('/', function(req, res, next) {
-    res.render('index', { user: req.user });
+    res.render('index', { thisUserData: req.user });
   });
 
   router.post('/books', function(req, res, next) {
@@ -73,7 +72,7 @@ var routes = function(passport, mongoose) {
       res.json(books);
     })
   });
-  router.get('/currentUserData', function(req, res, next) {
+  router.get('/currentUserData', function(req, res) {
     console.log(req.user);
     res.json(req.user);
   });

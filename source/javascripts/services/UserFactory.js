@@ -1,21 +1,21 @@
 app
 .factory('User', function($rootScope, $http, urls) {
   var User = {};
-  User.currentUser = false;
+  User.isLoggedIn = false;
 
   User.getUser = function(username) {
     return $http.get(urls.apiUrl + "/users/" + username);
   };
   User.setCurrentUser = function() {
-    User.currentUser = true;
+    User.isLoggedIn = true;
     $rootScope.currentUser = true;
   }
   User.nullCurrentUser = function() {
-    User.currentUser = false;
+    User.isLoggedIn = false;
     $rootScope.currentUser = false;
   }
   User.getCurrentUserData = function() {
-    return $http.get('/currentUserData');
+    return $http.get(urls.apiUrl + '/currentUserData');
   };
 
   return User;

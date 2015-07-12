@@ -33,13 +33,20 @@ app
     });
 });
 
-app.controller('navCtrl', function($scope, $rootScope, User) {
+app.controller('navCtrl', function($scope, $rootScope, User, $http, urls) {
   $scope.setCurrentUser = function() {
     User.setCurrentUser();
   };
   $scope.nullCurrentUser = function() {
     User.nullCurrentUser();
   }
+  User.getCurrentUserData()
+    .success(function(data) {
+      $rootScope.currentuserData = data;
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
 });
 
 app
@@ -122,21 +129,21 @@ app
 app
 .factory('User', function($rootScope, $http, urls) {
   var User = {};
-  User.currentUser = false;
+  User.isLoggedIn = false;
 
   User.getUser = function(username) {
     return $http.get(urls.apiUrl + "/users/" + username);
   };
   User.setCurrentUser = function() {
-    User.currentUser = true;
+    User.isLoggedIn = true;
     $rootScope.currentUser = true;
   }
   User.nullCurrentUser = function() {
-    User.currentUser = false;
+    User.isLoggedIn = false;
     $rootScope.currentUser = false;
   }
   User.getCurrentUserData = function() {
-    return $http.get('/currentUserData');
+    return $http.get(urls.apiUrl + '/currentUserData');
   };
 
   return User;
