@@ -30,10 +30,14 @@ app
   Book.getBooks()
     .success(function(data) {
       $scope.books = data;
+      console.log($scope.books);
     })
     .catch(function(error) {
       console.log(error);
     });
+  $scope.checkId = function(book) {
+    console.log("book", book);
+  }
 });
 
 app.controller('navCtrl', function($scope, $rootScope, User, $http, urls) {

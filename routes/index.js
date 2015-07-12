@@ -47,7 +47,7 @@ var routes = function(passport, mongoose) {
         console.log(err);
         res.status(400).json({ error: "Could not find books" });
       }
-      if (!books) {
+      if (!book) {
         res.status(404);
       }
       console.log(book);
