@@ -52,36 +52,6 @@ app.controller('navCtrl', function($scope, $rootScope, User, $http, urls) {
 });
 
 app
-.controller("rootCtrl", function($scope, $rootScope, Book, User) {
-
-  // $scope.getBooks = function() {
-  //   Book.getBooks()
-  //     .success(function(data) {
-  //       console.log(data);
-  //     })
-  //     .catch(function(error) {
-  //       console.log(error);
-  //     });
-  // };
-});
-
-app
-.controller("submitBookCtrl", function($scope, $rootScope, $state, Book, User) {
-  if (!$rootScope.currentUser) {
-    $state.go('home');
-  }
-  $scope.addBook = function(book) {
-    Book.addBook(book)
-    .success(function(data){
-      $state.go('home');
-    })
-    .catch(function(error) {
-      console.log(error);
-    });
-  };
-});
-
-app
 .controller('profileCtrl', function($scope, $rootScope, $state, $stateParams, User, Book) {
   $scope.user = {};
   $scope.userBooks = {};
@@ -109,6 +79,36 @@ app
       console.log(error);
     });
   }
+});
+
+app
+.controller("rootCtrl", function($scope, $rootScope, Book, User) {
+
+  // $scope.getBooks = function() {
+  //   Book.getBooks()
+  //     .success(function(data) {
+  //       console.log(data);
+  //     })
+  //     .catch(function(error) {
+  //       console.log(error);
+  //     });
+  // };
+});
+
+app
+.controller("submitBookCtrl", function($scope, $rootScope, $state, Book, User) {
+  if (!$rootScope.currentUser) {
+    $state.go('home');
+  }
+  $scope.addBook = function(book) {
+    Book.addBook(book)
+    .success(function(data){
+      $state.go('home');
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
+  };
 });
 
 app
