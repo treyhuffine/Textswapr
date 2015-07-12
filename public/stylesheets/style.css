@@ -1,6 +1,7 @@
 body {
   background: #e8e8e8;
 /*  margin-right: 70px !important;*/
+  font-weight: 200;
 }
 button {
   padding-bottom: 2px;
@@ -35,6 +36,7 @@ h1, h2, h3, h4, h5 {
 }
 .profile-container {
   margin-top: 20px;
+  margin-left: 30px;
 }
 .material-icons {
   font-size: 20px;
@@ -78,4 +80,22 @@ h1, h2, h3, h4, h5 {
 }
 .textswap-wrapper {
   margin-top: 25vh !important;
+}
+.btn i {
+  line-height: normal !important;
+}
+
+.dashboard {
+  height: 92vh;
+}
+.dash-links a {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 200px;
+}
+.collection.with-header {
+  width: 200px;
+}
+.brand-logo {
+  margin-left: 20px;
 }
