@@ -11,12 +11,6 @@ app
   $urlRouterProvider.otherwise('/');
   $stateProvider
   .state('home', {url: '/', templateUrl: '/templates/home.html'})
-  // .state('search', {
-  //   url: '/q/:query',
-  //   templateUrl: '/templates/home/search.html',
-  //   controller: 'searchCtrl'
-  // });
-  //
   .state('showUser', {url: '/users/:username', templateUrl: '/templates/profile.html', controller: 'profileCtrl'})
   .state('addBook', {url: '/items/new', templateUrl: '/templates/addBook.html', controller: 'submitBookCtrl'})
   .state('findBooks', {url: '/items', templateUrl: '/templates/bookIndex.html', controller: 'bookIndexCtrl'});
@@ -84,9 +78,9 @@ app
 app
 .controller('profileCtrl', function($scope, $state, $stateParams, $http, urls, User) {
   $scope.user = {};
-  $http.get(urls.apiUrl + '/users/' + $stateParams.username)
+
+  User.getUser($stateParams.username)
     .success(function(data) {
-      console.log(data);
       $scope.user = data;
     })
     .catch(function(error) {
@@ -111,11 +105,11 @@ app
 app
 .factory('User', function($http, urls) {
   var User = {};
-  // User.currentUser = {};
-  //
-  // User.getUser = function(userRequest) {
-  //   return $http.get(urls.apiUrl + "/users/" + userRequest);
-  // };
+  User.currentUser = {};
+
+  User.getUser = function(username) {
+    return $http.get(urls.apiUrl + "/users/" + username);
+  };
 
   return User;
 });
