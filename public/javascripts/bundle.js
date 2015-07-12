@@ -54,7 +54,7 @@ app.controller('navCtrl', function($scope, $rootScope, User, $http, urls) {
 app
 .controller('profileCtrl', function($scope, $rootScope, $state, $stateParams, User, Book) {
   $scope.user = {};
-  $scope.userBooks = {};
+  $scope.userBooks = [];
 
   User.getUser($stateParams.username)
     .success(function(data) {
@@ -71,11 +71,13 @@ app
     .catch(function(error) {
       console.log(error);
     });
-  $scope.deleteBook = function (book) {
+  $scope.deleteBook = function(book, idx) {
     Book.deleteBook(book)
     .success(function(data) {
       console.log("book deleted");
-    }).catch(function(error) {
+      $scope.userBooks.splice(idx,1);
+    })
+    .catch(function(error) {
       console.log(error);
     });
   }
