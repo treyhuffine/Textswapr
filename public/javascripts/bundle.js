@@ -44,7 +44,8 @@ app.controller('navCtrl', function($scope, $rootScope, User, $http, urls) {
   }
   User.getCurrentUserData()
     .success(function(data) {
-      $rootScope.currentuserData = data;
+      $rootScope.currentUserData = data;
+      console.log($rootScope.currentUserData);
     })
     .catch(function(error) {
       console.log(error);
@@ -53,24 +54,16 @@ app.controller('navCtrl', function($scope, $rootScope, User, $http, urls) {
 
 app
 .controller("rootCtrl", function($scope, $rootScope, Book, User) {
-  $scope.addBook = function(book) {
-    Book.addBook(book)
-      .success(function(data){
-        console.log(data);
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
-  };
-  $scope.getBooks = function() {
-    Book.getBooks()
-      .success(function(data) {
-        console.log(data);
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
-  };
+  console.log($rootScope.currentUserData);
+  // $scope.getBooks = function() {
+  //   Book.getBooks()
+  //     .success(function(data) {
+  //       console.log(data);
+  //     })
+  //     .catch(function(error) {
+  //       console.log(error);
+  //     });
+  // };
 });
 
 app

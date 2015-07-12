@@ -10,7 +10,7 @@
       <div ng-show='{{currentUser}}' class="splash-view">
         <span class="card-title activator grey-text text-darken-4 view-text">View your profile</span>
         <br>
-        <a ui-sref="showUser" class="waves-effect waves-light btn">Profile</a>
+        <a ui-sref="showUser({username: currentUserData.twitter.username})" class="waves-effect waves-light btn">Profile</a>
       </div>
       <div class="splash-or">
         <h3>OR</h3>
