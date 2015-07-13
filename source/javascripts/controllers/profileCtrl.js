@@ -53,8 +53,6 @@ app
     Trade.removeTrade(trade)
       .success(function(data) {
       console.log("book deleted: ", data);
-      //      $scope.userBooks.splice(idx,1);
-      //
       if (tradeType === 'received') {
         $scope.receivedTrades.splice(idx, 1);
       }
@@ -70,10 +68,11 @@ app
     Trade.acceptTrade(trade)
       .success(function(data) {
       console.log("bookChanged: ", data);
-      //      $scope.userBooks.splice(idx,1);
+      $state.go($state.$current, null, { reload: true });
     })
     .catch(function(error) {
       console.log(error);
+      alert('Trade failed!')
     })
   }
 });
