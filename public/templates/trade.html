@@ -40,7 +40,14 @@
                     {{book.edition}}
                   </p>
                   <span ng-show='currentUser'>
-                    <span><a ng-click='targetBook(book)' class="waves-effect waves-teal btn secondary-content">Select Book</a></span>
+                    <span>
+                      <script>
+                        $(document).ready(function(){
+                          $('.tooltipped').tooltip({delay: 20});
+                        });
+                      </script>
+                      <a ng-click='targetBook(book)' class="waves-effect waves-teal btn-floating btn-small secondary-content tooltipped" data-position="top" data-delay="50" data-tooltip="Make a Trade"><i class="material-icons">swap_horiz</i></a>
+                    </span>
                   </span>
                 </li>
               </ul>
