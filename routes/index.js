@@ -129,18 +129,15 @@ var routes = function(passport, mongoose) {
       var tradeSenderBook = acceptedTrade.initiatorBookID;
       var tradeReceiverBook = acceptedTrade.receiverBookID;
       var newSender = {}, newReceiver = {};
-      Book.find({ '_id': { $in: [tradeReceiverBook, tradeSenderBook] } }, function(err, openTrades) {
-      // Book.find({ '_id': tradeReceiverBook, '_id': tradeSenderBook,  }, function(err, openTrades) {
-        // if (openTrades[0].ownerUsername.toLowerCase() === )
         newReceiver = {
-          ownerUsername: openTrades[0].ownerUsername,
-          ownerDisplayName: openTrades[0].ownerDisplayName,
-          ownerId: openTrades[0].ownerId
+          ownerUsername: acceptedTrade.tradeInitiatorUsername,
+          ownerDisplayName: acceptedTrade.tradeInitiatorUsername,
+          ownerId: acceptedTrade.tradeInitiatorID
         };
         newSender = {
-          ownerUsername: openTrades[1].ownerUsername,
-          ownerDisplayName: openTrades[1].ownerDisplayName,
-          ownerId: openTrades[1].ownerId
+          ownerUsername: acceptedTrade.tradeReceiverUsername,
+          ownerDisplayName: acceptedTrade.tradeReceiverDisplayName,
+          ownerId: acceptedTrade.tradeReceiverID
         };
         console.log(newReceiver, newSender);
         console.log(tradeReceiverBook, tradeSenderBook);
@@ -159,8 +156,7 @@ var routes = function(passport, mongoose) {
               })
             })
           });
-        });
-      })
+      });
       // console.log("sender", newSender);
       // console.log("receiver", newReceiver);
       // Book.findOne({'_id': tradeSenderBook}, function(err, readBook) {
