@@ -1,5 +1,5 @@
 app.controller('tradeCtrl', function($scope, $rootScope, $state, $stateParams, Book, User) {
-  if (!$rootScope.currentUser) {
+  if (!$rootScope.currentUser || !$rootScope.currentUserData) {
     $state.go('home');
   }
   $scope.requestedBook = {};

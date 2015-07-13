@@ -4,14 +4,11 @@
             <div class="card">
               <div class="card-image">
                 <img ng-src="{{requestedBook.img}}">
-                <span class="card-title">Card Title</span>
               </div>
               <div class="card-content">
-                <p>I am a very simple card. I am good at containing small bits of information.
-                  I am convenient because I require little markup to use effectively.</p>
-              </div>
-              <div class="card-action">
-                <a href="">This is a link</a>
+                <span class="card-title">Card Title</span>
+                <p>{{requestedBook.title}}</p>
+                <p>{{requestedBook.author}}</p>
               </div>
             </div>
           </div>
@@ -19,19 +16,15 @@
             <div class="card">
               <div class="card-image">
                 <img ng-src="{{targetedBook.img}}">
-                <span class="card-title">Card Title</span>
               </div>
               <div class="card-content">
-                <p>I am a very simple card. I am good at containing small bits of information.
-                  I am convenient because I require little markup to use effectively.</p>
-              </div>
-              <div class="card-action">
-                <a href="">This is a link</a>
+                <p>{{targetedBook.title}}</p>
+                <p>{{targetedBook.author}}</p>
               </div>
             </div>
           </div>
           <div ng-show='showBookList' class="col s12 m6">
-              <h4>Available Books:</h4>
+              <h4>Your Books:</h4>
               <ul class="collection">
                 <li ng-repeat="book in currentUserBooks track by $index" class="collection-item avatar">
                   <img ng-src="{{book.img}}" alt="" class="circle">
