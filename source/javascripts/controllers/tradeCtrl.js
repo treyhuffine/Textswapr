@@ -4,6 +4,7 @@ app.controller('tradeCtrl', function($scope, $rootScope, $state, $stateParams, B
   }
   $scope.requestedBook = {};
   $scope.currentUserBooks = [];
+  $scope.targetedBook = {};
   console.log("stateparams book id: ", $stateParams.bookId);
   Book.getBook($stateParams.bookId)
     .success(function(data) {
@@ -22,6 +23,9 @@ app.controller('tradeCtrl', function($scope, $rootScope, $state, $stateParams, B
     .catch(function(error) {
       console.log(error);
     });
+  $scope.targetBook = function (book) {
+    $scope.targetedBook = book;
+  }
   // get desried $stateParams book ID
   // current user books => Book.getUserBooks(current)
 });
