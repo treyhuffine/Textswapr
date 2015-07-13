@@ -199,7 +199,7 @@ var routes = function(passport, mongoose) {
   });
   router.get('/trades/initiated/:username', function(req, res, next) {
     console.log(req.params);
-    Trade.find({ tradeInitiator: req.params.username, tradeOpen: true }).exec(function(err, trades) {
+    Trade.find({ tradeInitiatorUsername: req.params.username, tradeOpen: true }).exec(function(err, trades) {
       if (err) {
         res.status(400).json({error: "Could not find swap"});
       }
@@ -207,7 +207,7 @@ var routes = function(passport, mongoose) {
     });
   });
   router.get('/trades/requested/:username', function(req, res, next) {
-    Trade.find({ tradeReceiver: req.params.username, tradeOpen: true }).exec(function(err, trades) {
+    Trade.find({ tradeReceiverUsername: req.params.username, tradeOpen: true }).exec(function(err, trades) {
       if (err) {
         res.status(400).json({error: "Could not find swap"});
       }
