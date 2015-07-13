@@ -145,13 +145,13 @@ var routes = function(passport, mongoose) {
           console.log("first loop");
           Book.findOneAndUpdate({'_id': tradeReceiverBook}, newReceiver, { new: true }, function(err, newBook2) {
             console.log("second loop");
-            Trade.update({'initiatorBookID': tradeSenderBook}, {'tradeOpen': false}, {new: true}, function(err, closedTrades1) {
+            Trade.find({'initiatorBookID': tradeSenderBook},  function(err, closedTrades1) {
               console.log("close1: ", closedTrades1);
-              Trade.update({'receiverBookID': tradeSenderBook}, {'tradeOpen': false}, {new: true}, function(err, closedTrades2) {
+              Trade.find({'receiverBookID': tradeSenderBook},  function(err, closedTrades2) {
                 console.log("close2: ", closedTrades2);
-                Trade.update({'initiatorBookID': tradeReceiverBook}, {'tradeOpen': false}, {new: true}, function(err, closedTrades3) {
+                Trade.find({'initiatorBookID': tradeReceiverBook},  function(err, closedTrades3) {
                   console.log("close3: ", closedTrades3);
-                  Trade.update({'receiverBookID': tradeReceiverBook}, {'tradeOpen': false}, {new: true}, function(err, closedTrades4) {
+                  Trade.find({'receiverBookID': tradeReceiverBook}, function(err, closedTrades4) {
                     console.log("close4: ", closedTrades4);
                     res.json(acceptedTrade);
                   })
