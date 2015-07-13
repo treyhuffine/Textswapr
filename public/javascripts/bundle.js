@@ -73,7 +73,7 @@ app
     .catch(function(error) {
       console.log(error);
     });
-  if ($rootScope.currentUser && $stateParams.username.toLowerCase() === $rootScope.currentUserData.twitter.username.toLowerCase()) {
+  if ($rootScope.currentUserData && $stateParams.username.toLowerCase() === $rootScope.currentUserData.twitter.username.toLowerCase()) {
     Trade.getInitiatedTrades($rootScope.currentUserData.twitter.username)
       .success(function(data) {
         console.log(data);
@@ -83,7 +83,7 @@ app
         console.log(error);
       });
   }
-  if ($rootScope.currentUser && $stateParams.username.toLowerCase() === $rootScope.currentUserData.twitter.username.toLowerCase()) {
+  if ($rootScope.currentUserData && $stateParams.username.toLowerCase() === $rootScope.currentUserData.twitter.username.toLowerCase()) {
     Trade.getRequestedTrades($rootScope.currentUserData.twitter.username)
       .success(function(data) {
         console.log(data);

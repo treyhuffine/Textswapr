@@ -43,24 +43,35 @@
         </li>
       </ul>
     </div>
+
     <div class="col m4" ng-show="receivedTrades">
       Received Trades:
-      <ul>
-        <li ng-repeat="receivedTrade in receivedTrades">
-          <p>Sending: {{receivedTrade.receiverBookTitle}}</p>
-          <p>Receing: {{receivedTrade.initiatorBookTitle}}</p>
-          <span class="right"><a class="waves-effect waves-teal btn secondary-content">Cancel</a></span>
+      <ul class="collection">
+        <li class="collection-item"  ng-repeat="receivedTrade in receivedTrades">
+          <span class="title" style="display: inline-block;">
+            <p>Sending: {{receivedTrade.receiverBookTitle}} <br>
+            Receiving: {{receivedTrade.initiatorBookTitle}}
+          </p>
+          </span>
+          <span ng-show='currentUser'>
+            <span><a class="btn-floating btn-large waves-effect waves-light red secondary-content trash-button" style="margin-top: 7px !important;"><i class="material-icons">delete</i></a></span>
+            <span><a class="btn-floating btn-large waves-effect waves-light green secondary-content trash-button" style="margin-top: 7px !important;"><i class="material-icons">add</i></a></span>
+          </span>
         </li>
       </ul>
     </div>
-    <div class="col m4" ng-show="sentTrades">
+     <div class="col m4" ng-show="sentTrades">
       Sent Trades:
-      <ul>
-        <li ng-repeat="sentTrade in sentTrades">
-          Sending: {{sentTrade.initiatorBookTitle}}
-          <br>
-          Receiving: {{sentTrade.receiverBookTitle}}
-          <span class="right"><a class="waves-effect waves-teal btn secondary-content">Cancel</a></span>
+      <ul class="collection">
+        <li class="collection-item"  ng-repeat="sentTrade in sentTrades">
+          <span class="title" style="display: inline-block;">
+          <p>Sending: {{sentTrade.initiatorBookTitle}} <br>
+            Receiving: {{sentTrade.receiverBookTitle}}
+          </p>
+          </span>
+          <span ng-show='currentUser'>
+            <span><a class="btn-floating btn-large waves-effect waves-light red secondary-content trash-button" style="margin-top: 7px !important;"><i class="material-icons">delete</i></a></span>
+          </span>
         </li>
       </ul>
     </div>
