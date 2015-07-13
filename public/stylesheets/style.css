@@ -7,7 +7,7 @@ button {
   padding-bottom: 2px;
 }
 h1, h2, h3, h4, h5 {
-  font-weight: 300 !important;
+  font-weight: 200 !important;
 }
 .home-container {
   background-image: url(/img/lib.jpg);
@@ -24,8 +24,8 @@ h1, h2, h3, h4, h5 {
   height: 380px;
 }
 .book-img {
-  height: 290px;
-  width: 200px;
+  width: 150px;
+  height: 250px;
   padding-top: 10px;
 }
 .book-ico {
@@ -102,3 +102,4 @@ h1, h2, h3, h4, h5 {
 #trash-button {
   margin-top: 7px !important;
 }
+.material-icons.orange600 { color: rgb(251, 154, 0); }
