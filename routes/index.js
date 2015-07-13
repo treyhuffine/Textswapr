@@ -131,7 +131,7 @@ var routes = function(passport, mongoose) {
       var newSender = {}, newReceiver = {};
       Book.find({ '_id': { $in: [tradeReceiverBook, tradeSenderBook] } }, function(err, openTrades) {
       // Book.find({ '_id': tradeReceiverBook, '_id': tradeSenderBook,  }, function(err, openTrades) {
-        if (openTrades[0].ownerUsername.toLowerCase() === )
+        // if (openTrades[0].ownerUsername.toLowerCase() === )
         newReceiver = {
           ownerUsername: openTrades[0].ownerUsername,
           ownerDisplayName: openTrades[0].ownerDisplayName,
