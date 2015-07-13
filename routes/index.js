@@ -141,12 +141,17 @@ var routes = function(passport, mongoose) {
           ownerDisplayName: openTrades[1].ownerDisplayName,
           ownerId: openTrades[1].ownerId
         };
-        Book.findOneAndUpdate({'_id': tradeSenderBook}, newReceiver, { new: true }, function(err, newBook1) {
-          Book.findOneAndUpdate({'_id': tradeReceiverBook}, newSender, { new: true }, function(err, newBook2) {
-            Trade.findAndUpdate({initiatorBookID: tradeSenderBook}, {tradeOpen: false}, {new: true}, function(err, closedTrades1) {
-              Trade.findAndUpdate({receiverBookID: tradeSenderBook}, {tradeOpen: false}, {new: true}, function(err, closedTrades1) {
-                Trade.findAndUpdate({initiatorBookID: tradeReceiverBook}, {tradeOpen: false}, {new: true}, function(err, closedTrades1) {
-                  Trade.findAndUpdate({receiverBookID: tradeReceiverBook}, {tradeOpen: false}, {new: true}, function(err, closedTrades1) {
+        console.log(newReceiver, newSender);
+        console.log(tradeReceiverBook, tradeSenderBook);
+        Book.findOneAndUpdate({'_id': tradeSenderBook}, newSender, { new: true }, function(err, newBook1) {
+          console.log("first loop");
+          Book.findOneAndUpdate({'_id': tradeReceiverBook}, newReceiver, { new: true }, function(err, newBook2) {
+            console.log("second loop");
+            Trade.update({initiatorBookID: tradeSenderBook}, {tradeOpen: false}, {new: true}, function(err, closedTrades1) {
+              Trade.update({receiverBookID: tradeSenderBook}, {tradeOpen: false}, {new: true}, function(err, closedTrades2) {
+                Trade.update({initiatorBookID: tradeReceiverBook}, {tradeOpen: false}, {new: true}, function(err, closedTrades3) {
+                  Trade.update({receiverBookID: tradeReceiverBook}, {tradeOpen: false}, {new: true}, function(err, closedTrades4) {
+                    console.log("deep nested");
                     res.json(acceptedTrade);
                   })
                 })
