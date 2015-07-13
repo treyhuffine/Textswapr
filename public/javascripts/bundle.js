@@ -113,6 +113,16 @@ app
       console.log(error);
     })
   }
+  $scope.acceptTrade = function(trade) {
+    Trade.acceptTrade(trade)
+      .success(function(data) {
+      console.log("bookChanged: ", data);
+      //      $scope.userBooks.splice(idx,1);
+    })
+      .catch(function(error) {
+      console.log(error);
+    })
+  }
 });
 
 app
@@ -235,6 +245,10 @@ app
   Trade.removeTrade = function(deniedTrade) {
     console.log(deniedTrade._id);
     return $http.patch(urls.apiUrl + '/trades/remove/' + deniedTrade._id)
+  }
+  Trade.acceptTrade = function(acceptedTrade) {
+    console.log(acceptedTrade._id);
+    return $http.patch(urls.apiUrl + '/trades/accept/' + acceptedTrade._id)
   }
 
   return Trade;
