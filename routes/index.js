@@ -147,10 +147,10 @@ var routes = function(passport, mongoose) {
           console.log("first loop");
           Book.findOneAndUpdate({'_id': tradeReceiverBook}, newReceiver, { new: true }, function(err, newBook2) {
             console.log("second loop");
-            Trade.update({initiatorBookID: tradeSenderBook}, {tradeOpen: false}, {new: true}, function(err, closedTrades1) {
-              Trade.update({receiverBookID: tradeSenderBook}, {tradeOpen: false}, {new: true}, function(err, closedTrades2) {
-                Trade.update({initiatorBookID: tradeReceiverBook}, {tradeOpen: false}, {new: true}, function(err, closedTrades3) {
-                  Trade.update({receiverBookID: tradeReceiverBook}, {tradeOpen: false}, {new: true}, function(err, closedTrades4) {
+            Trade.update({'initiatorBookID': tradeSenderBook}, {'tradeOpen': false}, {new: true}, function(err, closedTrades1) {
+              Trade.update({'receiverBookID': tradeSenderBook}, {'tradeOpen': false}, {new: true}, function(err, closedTrades2) {
+                Trade.update({'initiatorBookID': tradeReceiverBook}, {'tradeOpen': false}, {new: true}, function(err, closedTrades3) {
+                  Trade.update({'receiverBookID': tradeReceiverBook}, {'tradeOpen': false}, {new: true}, function(err, closedTrades4) {
                     console.log("deep nested");
                     res.json(acceptedTrade);
                   })
