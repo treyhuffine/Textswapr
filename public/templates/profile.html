@@ -31,7 +31,7 @@
       <h4>Available Books:</h4>
       <ul class="collection">
         <li ng-repeat="book in userBooks track by $index" class="collection-item avatar">
-          <img src="{{book.img}}" alt="" class="circle">
+          <img ng-src="{{book.img}}" alt="" class="circle">
           <span class="title">{{book.title}}</span>
           <p>{{book.author}} <br>
             {{book.edition}}
