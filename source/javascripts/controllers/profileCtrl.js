@@ -68,11 +68,12 @@ app
     Trade.acceptTrade(trade)
       .success(function(data) {
       console.log("bookChanged: ", data);
+      swal('Congratulations!', 'Your trade was successful', 'success');
       $state.go($state.$current, null, { reload: true });
     })
     .catch(function(error) {
       console.log(error);
-      alert('Trade failed!')
+      swal('Trade failed!')
     })
   }
 });
