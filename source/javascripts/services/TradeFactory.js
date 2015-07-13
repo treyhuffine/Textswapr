@@ -11,6 +11,10 @@ app
   Trade.getRequestedTrades = function(activeUser) {
     return $http.get(urls.apiUrl + '/trades/requested/' + activeUser)
   }
+  Trade.removeTrade = function(deniedTrade) {
+    console.log(deniedTrade._id);
+    return $http.patch(urls.apiUrl + '/trades/remove/' + deniedTrade._id)
+  }
 
   return Trade;
 });

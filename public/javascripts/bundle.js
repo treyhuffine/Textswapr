@@ -103,6 +103,16 @@ app
       console.log(error);
     });
   }
+  $scope.deleteTrade = function(trade) {
+    Trade.removeTrade(trade)
+      .success(function(data) {
+      console.log("book deleted: ", data);
+      //      $scope.userBooks.splice(idx,1);
+    })
+      .catch(function(error) {
+      console.log(error);
+    })
+  }
 });
 
 app
@@ -221,6 +231,10 @@ app
   }
   Trade.getRequestedTrades = function(activeUser) {
     return $http.get(urls.apiUrl + '/trades/requested/' + activeUser)
+  }
+  Trade.removeTrade = function(deniedTrade) {
+    console.log(deniedTrade._id);
+    return $http.patch(urls.apiUrl + '/trades/remove/' + deniedTrade._id)
   }
 
   return Trade;

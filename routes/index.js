@@ -104,6 +104,19 @@ var routes = function(passport, mongoose) {
       res.json({ success: "book deleted" });
     })
   });
+  router.patch('/trades/remove/:id', function(req, res, next) {
+    Trade.findOneAndUpdate({ '_id': req.params.id }, { tradeOpen: false }, { new: true }, function(err, deniedTrade) {
+      console.log(err, deniedTrade);
+      if (err) {
+        console.log(err);
+        res.status(400).json({ error: "Could not read trade data" });
+      }
+      if (!deniedTrade) {
+        res.status(404);
+      }
+      res.json(deniedTrade);
+    })
+  });
   router.post('/trades', function(req, res, next) {
     var trade = new Trade(req.body);
     console.log(trade);
@@ -136,7 +149,6 @@ var routes = function(passport, mongoose) {
       res.json(trades);
     });
   });
-
   return router;
 };
 module.exports = routes;

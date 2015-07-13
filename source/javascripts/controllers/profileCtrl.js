@@ -48,4 +48,14 @@ app
       console.log(error);
     });
   }
+  $scope.deleteTrade = function(trade) {
+    Trade.removeTrade(trade)
+      .success(function(data) {
+      console.log("book deleted: ", data);
+      //      $scope.userBooks.splice(idx,1);
+    })
+      .catch(function(error) {
+      console.log(error);
+    })
+  }
 });
