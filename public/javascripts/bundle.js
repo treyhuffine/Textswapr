@@ -104,6 +104,7 @@ app
     });
   }
   $scope.deleteTrade = function(trade) {
+    console.log(trade);
     Trade.removeTrade(trade)
       .success(function(data) {
       console.log("book deleted: ", data);
