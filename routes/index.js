@@ -139,20 +139,28 @@ var routes = function(passport, mongoose) {
           ownerDisplayName: acceptedTrade.tradeReceiverDisplayName,
           ownerId: acceptedTrade.tradeReceiverID
         };
-        console.log(newReceiver, newSender);
-        console.log(tradeReceiverBook, tradeSenderBook);
         Book.findOneAndUpdate({'_id': tradeSenderBook}, newSender, { new: true }, function(err, newBook1) {
-          console.log("first loop");
           Book.findOneAndUpdate({'_id': tradeReceiverBook}, newReceiver, { new: true }, function(err, newBook2) {
-            console.log("second loop");
             Trade.find({'initiatorBookID': tradeSenderBook}, function(err, closedTrades1) {
-              console.log("close1: ", closedTrades1);
+              closedTrades1.forEach(function(e, i) {
+                e.tradeOpen = false;
+                e.save();
+              });
               Trade.find({'receiverBookID': tradeSenderBook}, function(err, closedTrades2) {
-                console.log("close2: ", closedTrades2);
+                closedTrades2.forEach(function(e, i) {
+                  e.tradeOpen = false;
+                  e.save();
+                });
                 Trade.find({'initiatorBookID': tradeReceiverBook}, function(err, closedTrades3) {
-                  console.log("close3: ", closedTrades3);
+                  closedTrades3.forEach(function(e, i) {
+                    e.tradeOpen = false;
+                    e.save();
+                  });
                   Trade.find({'receiverBookID': tradeReceiverBook}, function(err, closedTrades4) {
-                    console.log("close4: ", closedTrades4);
+                    closedTrades4.forEach(function(e, i) {
+                      e.tradeOpen = false;
+                      e.save();
+                    });
                     res.json(acceptedTrade);
                   })
                 })
