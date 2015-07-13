@@ -39,6 +39,9 @@ app.controller('tradeCtrl', function($scope, $rootScope, $state, $stateParams, B
         receiverBookID: $scope.requestedBook._id,
         receiverBookTitle: $scope.requestedBook.title
       };
+      console.log('data', $scope.tradeData);
+      console.log($rootScope.currentUserData);
+      console.log($scope.requestedBook);
       Trade.createTrade($scope.tradeData)
       .success(function(data) {
         console.log(data)

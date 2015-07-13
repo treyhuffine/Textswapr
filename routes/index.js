@@ -182,12 +182,13 @@ var routes = function(passport, mongoose) {
     });
   });
   router.post('/trades', function(req, res, next) {
+    console.log(req.body);
     var trade = new Trade(req.body);
     console.log(trade);
-    if (trade.tradeInitiator === trade.tradeReceiver) {
-      res.status(404).json({error: "Can't swap yourself"});
-      return;
-    }
+    // if (trade.tradeInitiator === trade.tradeReceiver) {
+    //   res.status(404).json({error: "Can't swap yourself"});
+    //   return;
+    // }
     trade.save(function(err, savedTrade) {
       console.log(savedTrade);
       if (err) {

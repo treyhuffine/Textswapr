@@ -64,7 +64,7 @@ app
       console.log("bookChanged: ", data);
       //      $scope.userBooks.splice(idx,1);
     })
-      .catch(function(error) {
+    .catch(function(error) {
       console.log(error);
     })
   }
