@@ -3,17 +3,19 @@
           <div class="col s12 m4">
             <h4>Trading For:</h4>
             <div class="card">
-              <div class="card-image">
-                <img ng-src="{{requestedBook.img}}">
+              <div class="card-image trade">
+                <img ng-src="{{requestedBook.img}}" class="trade-image">
               </div>
+              <div class="divider trade-info"></div>
               <div class="card-content">
                 <p>{{requestedBook.title}}</p>
                 <p>{{requestedBook.author}}</p>
               </div>
             </div>
           </div>
-          <div class="col s12 m4">
-            <h5>Current Trade</h5>
+          <div class="col s12 m4 borders">
+            <h5 class='trade-title info'>Current Trade</h5>
+            <div class="divider bookcard"></div>
             <p>Receiving: {{requestedBook.title}}</p>
             <p>Sending: {{targetedBook.title || "Select a book"}}</p>
             <span ng-hide="showBookList"><a ng-click='createTrade()' class="waves-effect waves-teal btn secondary-content">Create Trade</a></span>

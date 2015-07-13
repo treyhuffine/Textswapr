@@ -103,3 +103,27 @@ h1, h2, h3, h4, h5 {
   margin-top: 7px !important;
 }
 .material-icons.orange600 { color: rgb(251, 154, 0); }
+.divider.bookcard {
+  margin-top: 15px;
+}
+.card-image.trade {
+  width: 200px !important;
+  height: 280px !important;
+  margin: auto;
+  margin-top: 20px !important;
+}
+.trade-image {
+  width: 99%
+}
+.col.borders {
+  height: 100vh;
+  border-right: 1px inset white !important;
+  border-left: 1px inset white;
+}
+.trade-title.info {
+  margin-top: 50px;
+}
+.divider.trade-info {
+  margin-top: 15px;
+  border-top-color: color: rgb(251, 154, 0);
+}

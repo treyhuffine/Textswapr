@@ -5,14 +5,20 @@
         <div class="card-image waves-effect waves-block waves-light">
           <img class="book-img activator" src="{{book.img}}">
         </div>
-        <div class="divider"></div>
+        <div class="divider bookcard"></div>
 
         <div class="card-content">
+         <script>
+           $(document).ready(function(){
+             $('.tooltipped').tooltip({delay: 50});
+           });
+          </script>
           <span class="card-title activator grey-text text-darken-4">{{book.title}}</span>
-          <i class="material-icons right activator" style="cursor: pointer;">more_vert</i>
+          <i class="material-icons right activator orange600 tooltipped" data-position="bottom" data-delay="20" data-tooltip="View Book Info." style="cursor: pointer;">more_vert</i>
         </div>
+        <div class="divider bookcard"></div>
         <div class="card-reveal">
-          <span class="card-title grey-text text-darken-4">{{book.title}}<i class="material-icons right">close</i></span>
+          <span class="card-title grey-text text-darken-4">{{book.title}}<i class="material-icons right orange600">close</i></span>
           <div class="divider"></div>
           <ul>
             <li><strong>Author:</strong> {{book.author}}</li>
