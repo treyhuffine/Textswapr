@@ -2,8 +2,8 @@ var app = angular.module('textSwap', ['ui.router']);
 
 app.run(function($rootScope) {
   console.log('Text Swap!');
-  $rootScope.currentUser = false;
-  $rootScope.currentUserData = {};
+  // $rootScope.currentUser = false;
+  // $rootScope.currentUserData = {};
 });
 
 app
@@ -73,17 +73,17 @@ app
     .catch(function(error) {
       console.log(error);
     });
-  if ($rootScope.currentUserData && $stateParams.username.toLowerCase() === $rootScope.currentUserData.twitter.username.toLowerCase()) {
-    Trade.getInitiatedTrades($rootScope.currentUserData.twitter.username)
-      .success(function(data) {
-        console.log(data);
-        $scope.sentTrades = data;
-      })
-      .catch(function(error) {
-        console.log(error);
-      });
+  if ($stateParams.username.toLowerCase() === $rootScope.currentUserData.twitter.username.toLowerCase()) {
+      Trade.getInitiatedTrades($rootScope.currentUserData.twitter.username)
+        .success(function(data) {
+          console.log(data);
+          $scope.sentTrades = data;
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
   }
-  if ($rootScope.currentUserData && $stateParams.username.toLowerCase() === $rootScope.currentUserData.twitter.username.toLowerCase()) {
+  if ($stateParams.username.toLowerCase() === $rootScope.currentUserData.twitter.username.toLowerCase()) {
     Trade.getRequestedTrades($rootScope.currentUserData.twitter.username)
       .success(function(data) {
         console.log(data);
