@@ -103,12 +103,19 @@ app
       console.log(error);
     });
   }
-  $scope.deleteTrade = function(trade) {
-    console.log(trade);
+  $scope.deleteTrade = function(trade, idx, tradeType) {
+    console.log(tradeType);
     Trade.removeTrade(trade)
       .success(function(data) {
       console.log("book deleted: ", data);
       //      $scope.userBooks.splice(idx,1);
+      //
+      if (tradeType === 'received') {
+        $scope.receivedTrades.splice(idx, 1);
+      }
+      else {
+        $scope.sentTrades.splice(idx, 1);
+      }
     })
       .catch(function(error) {
       console.log(error);

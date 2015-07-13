@@ -54,7 +54,7 @@
           </p>
           </span>
           <span ng-show='currentUser'>
-            <span><a ng-click="deleteTrade(receivedTrade, $index)" class="btn-floating btn-small waves-effect waves-light red secondary-content trash-button" style="margin-top: 7px !important;"><i class="material-icons">delete</i>&nbsp</a></span>
+            <span><a ng-click="deleteTrade(receivedTrade, $index, 'received')" class="btn-floating btn-small waves-effect waves-light red secondary-content trash-button" style="margin-top: 7px !important;"><i class="material-icons">delete</i>&nbsp</a></span>
             <span><a ng-click="acceptTrade(receivedTrade, $index)" class="btn-floating btn-small waves-effect waves-light green secondary-content trash-button" style="margin-top: 7px !important;"><i class="material-icons">add</i></a></span>
           </span>
         </li>
@@ -70,7 +70,7 @@
           </p>
           </span>
           <span ng-show='currentUser'>
-            <span><a ng-click="deleteTrade(sentTrade, $index)" id='trash-button' class="btn-floating btn-small waves-effect waves-light red secondary-content" style="margin-top: 7px !important;"><i class="material-icons">delete</i></a></span>
+            <span><a ng-click="deleteTrade(sentTrade, $index, 'sent')" id='trash-button' class="btn-floating btn-small waves-effect waves-light red secondary-content" style="margin-top: 7px !important;"><i class="material-icons">delete</i></a></span>
           </span>
         </li>
       </ul>
