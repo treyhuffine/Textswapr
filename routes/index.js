@@ -130,30 +130,44 @@ var routes = function(passport, mongoose) {
       var tradeSenderBook = acceptedTrade.initiatorBookID;
       var tradeReceiverBook = acceptedTrade.receiverBookID;
       var newSender = {}, newReceiver = {};
-      console.log('start trades');
-      Book.findOne({'_id': tradeSenderBook}, function(err, readBook) {
+      console.log('start trades', tradeSenderBook, tradeReceiverBook);
+      Book.find({ '_id': { $in: [tradeReceiverBook, tradeSenderBook] } }, function(err, openTrades) {
+      // Book.find({ '_id': tradeReceiverBook, '_id': tradeSenderBook,  }, function(err, openTrades) {
+        console.log(openTrades);
         newReceiver = {
-          ownerUsername: readBook.ownerUsername,
-          ownerDisplayName: readBook.ownerDisplayName,
-          ownerId: readBook.ownerId
+          ownerUsername: openTrades[0].ownerUsername,
+          ownerDisplayName: openTrades[0].ownerDisplayName,
+          ownerId: openTrades[0].ownerId
         };
-      });
-      Book.findOne({'_id': tradeReceiverBook}, function(err, readBook) {
         newSender = {
-          ownerUsername: readBook.ownerUsername,
-          ownerDisplayName: readBook.ownerDisplayName,
-          ownerId: readBook.ownerId
+          ownerUsername: openTrades[1].ownerUsername,
+          ownerDisplayName: openTrades[1].ownerDisplayName,
+          ownerId: openTrades[1].ownerId
         };
-      });
-      console.log("sender", newSender);
-      console.log("receiver", newReceiver);
-      Book.findOneAndUpdate({'_id': tradeSenderBook}, newSender, { new: true }, function(err, newBook) {
-        console.log('sender', newBook);
-      });
-      Book.findOneAndUpdate({'_id': tradeReceiverBook}, newReceiver, { new: true }, function(err, newBook) {
-        console.log('receiver', newBook);
-      });
-      res.json(acceptedTrade);
+        Book.findOneAndUpdate({'_id': tradeSenderBook}, newReceiver, { new: true }, function(err, newBook) {
+          console.log('sender', newBook);
+          Book.findOneAndUpdate({'_id': tradeReceiverBook}, newSender, { new: true }, function(err, newBook) {
+            console.log('receiver', newBook);
+            res.json(acceptedTrade);
+          });
+        });
+      })
+      // console.log("sender", newSender);
+      // console.log("receiver", newReceiver);
+      // Book.findOne({'_id': tradeSenderBook}, function(err, readBook) {
+      //   newReceiver = {
+      //     ownerUsername: readBook.ownerUsername,
+      //     ownerDisplayName: readBook.ownerDisplayName,
+      //     ownerId: readBook.ownerId
+      //   };
+      // });
+      // Book.findOne({'_id': tradeReceiverBook}, function(err, readBook) {
+      //   newSender = {
+      //     ownerUsername: readBook.ownerUsername,
+      //     ownerDisplayName: readBook.ownerDisplayName,
+      //     ownerId: readBook.ownerId
+      //   };
+      // });
       // Trade books -> change owner of each book
       // set all swapOpen with the books for each user to false
     });
