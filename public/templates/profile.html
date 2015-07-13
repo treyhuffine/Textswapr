@@ -37,7 +37,7 @@
             {{book.edition}}
           </p>
           <span ng-show='currentUser'>
-            <span ng-hide="currentUserData.twitter.username === user.twitter.username"><a ui-sref="initiateTrade(book._id)" class="waves-effect waves-teal btn secondary-content"><i class="material-icons">swap_horiz</i>Initiate Swap</a></span>
+            <span ng-hide="currentUserData.twitter.username === user.twitter.username"><a ui-sref="initiateTrade({bookId: book._id})" class="waves-effect waves-teal btn secondary-content"><i class="material-icons">swap_horiz</i>Initiate Swap</a></span>
             <span ng-show='currentUserData.twitter.username === user.twitter.username'><a ng-click="deleteBook(book, $index)" class="waves-effect waves-teal btn secondary-content"><i class="material-icons">swap_horiz</i>Delete Book</a></span>
           </span>
         </li>
