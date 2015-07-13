@@ -120,7 +120,6 @@ var routes = function(passport, mongoose) {
   router.patch('/trades/accept/:id', function(req, res, next) {
     // req.body.user must match current user and receiver user and swap is open
     Trade.findOneAndUpdate({ '_id': req.params.id }, { tradeOpen: false }, { new: true }, function(err, acceptedTrade) {
-      console.log("testing trade", acceptedTrade);
       if (err) {
         res.status(400).json({error: "Could not complete transaction"});
       }
@@ -130,10 +129,8 @@ var routes = function(passport, mongoose) {
       var tradeSenderBook = acceptedTrade.initiatorBookID;
       var tradeReceiverBook = acceptedTrade.receiverBookID;
       var newSender = {}, newReceiver = {};
-      console.log('start trades', tradeSenderBook, tradeReceiverBook);
       Book.find({ '_id': { $in: [tradeReceiverBook, tradeSenderBook] } }, function(err, openTrades) {
       // Book.find({ '_id': tradeReceiverBook, '_id': tradeSenderBook,  }, function(err, openTrades) {
-        console.log(openTrades);
         newReceiver = {
           ownerUsername: openTrades[0].ownerUsername,
           ownerDisplayName: openTrades[0].ownerDisplayName,
@@ -145,9 +142,7 @@ var routes = function(passport, mongoose) {
           ownerId: openTrades[1].ownerId
         };
         Book.findOneAndUpdate({'_id': tradeSenderBook}, newReceiver, { new: true }, function(err, newBook) {
-          console.log('sender', newBook);
           Book.findOneAndUpdate({'_id': tradeReceiverBook}, newSender, { new: true }, function(err, newBook) {
-            console.log('receiver', newBook);
             res.json(acceptedTrade);
           });
         });
