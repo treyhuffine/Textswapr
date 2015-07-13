@@ -28,8 +28,12 @@ app.controller('tradeCtrl', function($scope, $rootScope, $state, $stateParams, B
     console.log("Starting trade");
     if (!$scope.showBookList) {
       $scope.tradeData = {
-        tradeInitiator: $rootScope.currentUserData.twitter.username,
-        tradeReceiver: $scope.requestedBook.ownerUsername,
+        tradeInitiatorUsername: $rootScope.currentUserData.twitter.username,
+        tradeInitiatorDisplayName: $rootScope.currentUserData.twitter.displayName,
+        tradeInitiatorID: $rootScope.currentUserData._id,
+        tradeReceiverUsername: $scope.requestedBook.ownerUsername,
+        tradeReceiverDisplayName: $scope.requestedBook.ownerDisplayName,
+        tradeReceiverID: $scope.requestedBook.ownerId,
         initiatorBookID: $scope.targetedBook._id,
         initiatorBookTitle: $scope.targetedBook.title,
         receiverBookID: $scope.requestedBook._id,

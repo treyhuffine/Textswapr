@@ -1,8 +1,12 @@
 var mongoose = require('mongoose');
 
 var Trade = mongoose.model('trade', {
-  tradeInitiator: {type: String, required: true},
-  tradeReceiver: {type: String, required: true},
+  tradeInitiatorUsername: {type: String, required: true},
+  tradeInitiatorDisplayName: {type: String, required: true},
+  tradeInitiatorID: {type: String, required: true},
+  tradeReceiverUsername: {type: String, required: true},
+  tradeReceiverDisplayName: {type: String, required: true},
+  tradeReceiverID: {type: String, required: true},
   initiatorBookID: {type: String,required: true},
   receiverBookID: {type: String, required: true},
   initiatorBookTitle: {type: String, required: true},

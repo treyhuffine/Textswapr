@@ -25,6 +25,79 @@ app
 });
 
 app
+.factory('Book', function($http, urls) {
+  var Book = {};
+
+  Book.addBook = function(book) {
+    return $http.post(urls.apiUrl + "/books", book);
+  };
+  Book.getBooks = function() {
+    return $http.get(urls.apiUrl + "/books");
+  };
+  Book.getUsersBooks = function(username) {
+    return $http.get(urls.apiUrl + "/users/" + username + "/books");
+  };
+  Book.deleteBook = function(removedBook) {
+    return $http.delete(urls.apiUrl + "/books/" + removedBook._id);
+  };
+  Book.getBook = function(bookId) {
+    console.log("bookId: ", bookId);
+    return $http.get(urls.apiUrl + "/books/" + bookId);
+  };
+
+  return Book;
+});
+
+app
+.factory('Trade', function($rootScope, $http, urls) {
+  var Trade = {};
+
+  Trade.createTrade = function(tradeData) {
+    return $http.post(urls.apiUrl + '/trades', tradeData);
+  };
+  Trade.getInitiatedTrades = function(activeUser) {
+    return $http.get(urls.apiUrl + '/trades/initiated/' + activeUser)
+  }
+  Trade.getRequestedTrades = function(activeUser) {
+    return $http.get(urls.apiUrl + '/trades/requested/' + activeUser)
+  }
+  Trade.removeTrade = function(deniedTrade) {
+    console.log(deniedTrade._id);
+    return $http.patch(urls.apiUrl + '/trades/remove/' + deniedTrade._id)
+  }
+  Trade.acceptTrade = function(acceptedTrade) {
+    console.log(acceptedTrade._id);
+    return $http.patch(urls.apiUrl + '/trades/accept/' + acceptedTrade._id)
+  }
+
+  return Trade;
+});
+
+app
+.factory('User', function($rootScope, $http, urls) {
+  var User = {};
+  User.isLoggedIn = false;
+
+  User.getUser = function(username) {
+    return $http.get(urls.apiUrl + "/users/" + username);
+  };
+  User.setCurrentUser = function() {
+    User.isLoggedIn = true;
+    $rootScope.currentUser = true;
+  }
+  User.nullCurrentUser = function() {
+    User.isLoggedIn = false;
+    $rootScope.currentUser = false;
+    $rootScope.currentUserData = {};
+  }
+  User.getCurrentUserData = function() {
+    return $http.get(urls.apiUrl + '/currentUserData');
+  };
+
+  return User;
+});
+
+app
 .controller("bookIndexCtrl", function($scope, $rootScope, Book, User) {
   $scope.books = [];
   Book.getBooks()
@@ -185,8 +258,12 @@ app.controller('tradeCtrl', function($scope, $rootScope, $state, $stateParams, B
     console.log("Starting trade");
     if (!$scope.showBookList) {
       $scope.tradeData = {
-        tradeInitiator: $rootScope.currentUserData.twitter.username,
-        tradeReceiver: $scope.requestedBook.ownerUsername,
+        tradeInitiatorUsername: $rootScope.currentUserData.twitter.username,
+        tradeInitiatorDisplayName: $rootScope.currentUserData.twitter.displayName,
+        tradeInitiatorID: $rootScope.currentUserData._id,
+        tradeReceiverUsername: $scope.requestedBook.ownerUsername,
+        tradeReceiverDisplayName: $scope.requestedBook.ownerDisplayName,
+        tradeReceiverID: $scope.requestedBook.ownerId,
         initiatorBookID: $scope.targetedBook._id,
         initiatorBookTitle: $scope.targetedBook.title,
         receiverBookID: $scope.requestedBook._id,
@@ -203,77 +280,4 @@ app.controller('tradeCtrl', function($scope, $rootScope, $state, $stateParams, B
       })
     }
   };
-});
-
-app
-.factory('Book', function($http, urls) {
-  var Book = {};
-
-  Book.addBook = function(book) {
-    return $http.post(urls.apiUrl + "/books", book);
-  };
-  Book.getBooks = function() {
-    return $http.get(urls.apiUrl + "/books");
-  };
-  Book.getUsersBooks = function(username) {
-    return $http.get(urls.apiUrl + "/users/" + username + "/books");
-  };
-  Book.deleteBook = function(removedBook) {
-    return $http.delete(urls.apiUrl + "/books/" + removedBook._id);
-  };
-  Book.getBook = function(bookId) {
-    console.log("bookId: ", bookId);
-    return $http.get(urls.apiUrl + "/books/" + bookId);
-  };
-
-  return Book;
-});
-
-app
-.factory('Trade', function($rootScope, $http, urls) {
-  var Trade = {};
-
-  Trade.createTrade = function(tradeData) {
-    return $http.post(urls.apiUrl + '/trades', tradeData);
-  };
-  Trade.getInitiatedTrades = function(activeUser) {
-    return $http.get(urls.apiUrl + '/trades/initiated/' + activeUser)
-  }
-  Trade.getRequestedTrades = function(activeUser) {
-    return $http.get(urls.apiUrl + '/trades/requested/' + activeUser)
-  }
-  Trade.removeTrade = function(deniedTrade) {
-    console.log(deniedTrade._id);
-    return $http.patch(urls.apiUrl + '/trades/remove/' + deniedTrade._id)
-  }
-  Trade.acceptTrade = function(acceptedTrade) {
-    console.log(acceptedTrade._id);
-    return $http.patch(urls.apiUrl + '/trades/accept/' + acceptedTrade._id)
-  }
-
-  return Trade;
-});
-
-app
-.factory('User', function($rootScope, $http, urls) {
-  var User = {};
-  User.isLoggedIn = false;
-
-  User.getUser = function(username) {
-    return $http.get(urls.apiUrl + "/users/" + username);
-  };
-  User.setCurrentUser = function() {
-    User.isLoggedIn = true;
-    $rootScope.currentUser = true;
-  }
-  User.nullCurrentUser = function() {
-    User.isLoggedIn = false;
-    $rootScope.currentUser = false;
-    $rootScope.currentUserData = {};
-  }
-  User.getCurrentUserData = function() {
-    return $http.get(urls.apiUrl + '/currentUserData');
-  };
-
-  return User;
 });
