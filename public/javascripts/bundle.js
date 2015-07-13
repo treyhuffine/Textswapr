@@ -153,7 +153,8 @@ app.controller('tradeCtrl', function($scope, $rootScope, $state, $stateParams, B
       Trade.createTrade($scope.tradeData)
       .success(function(data) {
         console.log(data)
-        // $state.go('showUser($rootScope.currentUserData.twitter.username)')
+        console.log($rootScope.currentUserData.twitter.username);
+        $state.go('showUser', {username: $rootScope.currentUserData.twitter.username});
       })
       .catch(function(error) {
         console.log(error);
