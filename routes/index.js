@@ -4,7 +4,7 @@ var routes = function(passport, mongoose) {
   var Twitter = require("twitter");
   var User = require('../app/models/user');
   var Book = require('../app/models/book');
-  var Swap = require('../app/models/swap');
+  var Trade = require('../app/models/trade');
 
   router.get('/auth/twitter', passport.authenticate('twitter'));
   router.get('/auth/twitter/callback', passport.authenticate('twitter', { failureRedirect: '/' }), function(req, res) {
@@ -105,22 +105,18 @@ var routes = function(passport, mongoose) {
     })
   });
   router.post('/trades', function(req, res, next) {
-    var trade = new Swap(req.body);
-    // swap.swapInitiator = req.body.swapInitiator;
-    // swap.swapReceiver = req.body.swapReceiver;
-    // swap.initiatorBook = req.body.initiatorBook;
-    // swap.receiverBook = req.body.receiverBook;
-    // initiator and receiver can't be the same person
-    //
-    if (trade.tradeInitiator === trade.tradeReceiver) {
-      res.status(404).json({error: "Can't swap yourself"})
-    }
+    var trade = new Trade(req.body);
+    console.log(trade);
+    // if (trade.tradeInitiator === trade.tradeReceiver) {
+    //   res.status(404).json({error: "Can't swap yourself"})
+    // }
     trade.save(function(err, savedTrade) {
+      console.log(savedTrade);
       if (err) {
         res.status(400).json({error: "Swap failed"});
       }
       res.json(savedTrade);
-      res.redirect('/');
+      // res.redirect('/');
     });
   });
 

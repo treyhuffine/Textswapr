@@ -1,4 +1,4 @@
-app.controller('tradeCtrl', function($scope, $rootScope, $state, $stateParams, Book, User) {
+app.controller('tradeCtrl', function($scope, $rootScope, $state, $stateParams, Book, User, Trade) {
   if (!$rootScope.currentUser || !$rootScope.currentUserData) {
     $state.go('home');
   }
@@ -24,6 +24,23 @@ app.controller('tradeCtrl', function($scope, $rootScope, $state, $stateParams, B
     $scope.targetedBook = book;
     $scope.showBookList = false;
   }
-  // get desried $stateParams book ID
-  // current user books => Book.getUserBooks(current)
+  $scope.createTrade = function() {
+    console.log("Starting trade");
+    // if ($scope.targetedBook.length > 0) {
+      $scope.tradeData = {
+        tradeInitiator: $rootScope.currentUserData.twitter.username,
+        tradeReceiver: $scope.requestedBook.ownerUsername,
+        initiatorBook: $scope.targetedBook._id,
+        receiverBook: $scope.requestedBook._id
+      };
+      Trade.createTrade($scope.tradeData)
+      .success(function(data) {
+        console.log(data)
+        // $state.go('showUser($rootScope.currentUserData.twitter.username)')
+      })
+      .catch(function(error) {
+        console.log(error);
+      })
+    // }
+  };
 });

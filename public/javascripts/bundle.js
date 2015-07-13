@@ -7,24 +7,6 @@ app.run(function($rootScope) {
 });
 
 app
-.config(function($stateProvider, $urlRouterProvider, $locationProvider){
-  // $locationProvider.html5Mode({enabled: true, requireBase: false});
-
-  $urlRouterProvider.otherwise('/');
-  $stateProvider
-  .state('home', {url: '/', templateUrl: '/templates/home.html', controller: 'rootCtrl'})
-  .state('showUser', {url: '/users/:username', templateUrl: '/templates/profile.html', controller: 'profileCtrl'})
-  .state('addBook', {url: '/books/new', templateUrl: '/templates/addBook.html', controller: 'submitBookCtrl'})
-  .state('findBooks', {url: '/books', templateUrl: '/templates/bookIndex.html', controller: 'bookIndexCtrl'})
-  .state('initiateTrade', {url: '/trades/:bookId', templateUrl: '/templates/trade.html', controller: 'tradeCtrl'});
-});
-
-app
-.constant('urls',{
-  'apiUrl': ''
-});
-
-app
 .controller("bookIndexCtrl", function($scope, $rootScope, Book, User) {
   $scope.books = [];
   Book.getBooks()
@@ -115,7 +97,7 @@ app
   };
 });
 
-app.controller('tradeCtrl', function($scope, $rootScope, $state, $stateParams, Book, User) {
+app.controller('tradeCtrl', function($scope, $rootScope, $state, $stateParams, Book, User, Trade) {
   if (!$rootScope.currentUser || !$rootScope.currentUserData) {
     $state.go('home');
   }
@@ -141,8 +123,43 @@ app.controller('tradeCtrl', function($scope, $rootScope, $state, $stateParams, B
     $scope.targetedBook = book;
     $scope.showBookList = false;
   }
-  // get desried $stateParams book ID
-  // current user books => Book.getUserBooks(current)
+  $scope.createTrade = function() {
+    console.log("Starting trade");
+    // if ($scope.targetedBook.length > 0) {
+      $scope.tradeData = {
+        tradeInitiator: $rootScope.currentUserData.twitter.username,
+        tradeReceiver: $scope.requestedBook.ownerUsername,
+        initiatorBook: $scope.targetedBook._id,
+        receiverBook: $scope.requestedBook._id
+      };
+      Trade.createTrade($scope.tradeData)
+      .success(function(data) {
+        console.log(data)
+        // $state.go('showUser($rootScope.currentUserData.twitter.username)')
+      })
+      .catch(function(error) {
+        console.log(error);
+      })
+    // }
+  };
+});
+
+app
+.config(function($stateProvider, $urlRouterProvider, $locationProvider){
+  // $locationProvider.html5Mode({enabled: true, requireBase: false});
+
+  $urlRouterProvider.otherwise('/');
+  $stateProvider
+  .state('home', {url: '/', templateUrl: '/templates/home.html', controller: 'rootCtrl'})
+  .state('showUser', {url: '/users/:username', templateUrl: '/templates/profile.html', controller: 'profileCtrl'})
+  .state('addBook', {url: '/books/new', templateUrl: '/templates/addBook.html', controller: 'submitBookCtrl'})
+  .state('findBooks', {url: '/books', templateUrl: '/templates/bookIndex.html', controller: 'bookIndexCtrl'})
+  .state('initiateTrade', {url: '/trades/:bookId', templateUrl: '/templates/trade.html', controller: 'tradeCtrl'});
+});
+
+app
+.constant('urls',{
+  'apiUrl': ''
 });
 
 app
@@ -170,27 +187,14 @@ app
 });
 
 app
-.factory('User', function($rootScope, $http, urls) {
-  var User = {};
-  User.isLoggedIn = false;
+.factory('Trade', function($rootScope, $http, urls) {
+  var Trade = {};
 
-  User.getUser = function(username) {
-    return $http.get(urls.apiUrl + "/users/" + username);
-  };
-  User.setCurrentUser = function() {
-    User.isLoggedIn = true;
-    $rootScope.currentUser = true;
-  }
-  User.nullCurrentUser = function() {
-    User.isLoggedIn = false;
-    $rootScope.currentUser = false;
-    $rootScope.currentUserData = {};
-  }
-  User.getCurrentUserData = function() {
-    return $http.get(urls.apiUrl + '/currentUserData');
+  Trade.createTrade = function(tradeData) {
+    return $http.post(urls.apiUrl + '/trades', tradeData);
   };
 
-  return User;
+  return Trade;
 });
 
 app
