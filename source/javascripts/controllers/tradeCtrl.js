@@ -30,8 +30,10 @@ app.controller('tradeCtrl', function($scope, $rootScope, $state, $stateParams, B
       $scope.tradeData = {
         tradeInitiator: $rootScope.currentUserData.twitter.username,
         tradeReceiver: $scope.requestedBook.ownerUsername,
-        initiatorBook: $scope.targetedBook._id,
-        receiverBook: $scope.requestedBook._id
+        initiatorBookID: $scope.targetedBook._id,
+        initiatorBookTitle: $scope.targetedBook.title,
+        receiverBookID: $scope.requestedBook._id,
+        receiverBookTitle: $scope.requestedBook.title
       };
       Trade.createTrade($scope.tradeData)
       .success(function(data) {

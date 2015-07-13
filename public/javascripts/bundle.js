@@ -54,7 +54,7 @@ app.controller('navCtrl', function($scope, $rootScope, User, $http, urls) {
 });
 
 app
-.controller('profileCtrl', function($scope, $rootScope, $state, $stateParams, User, Book) {
+.controller('profileCtrl', function($scope, $rootScope, $state, $stateParams, User, Book, Trade) {
   $scope.user = {};
   $scope.userBooks = [];
 
@@ -73,6 +73,26 @@ app
     .catch(function(error) {
       console.log(error);
     });
+  if ($rootScope.currentUser && $stateParams.username.toLowerCase() === $rootScope.currentUserData.twitter.username.toLowerCase()) {
+    Trade.getInitiatedTrades($rootScope.currentUserData.twitter.username)
+      .success(function(data) {
+        console.log(data);
+        $scope.sentTrades = data;
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  }
+  if ($rootScope.currentUser && $stateParams.username.toLowerCase() === $rootScope.currentUserData.twitter.username.toLowerCase()) {
+    Trade.getRequestedTrades($rootScope.currentUserData.twitter.username)
+      .success(function(data) {
+        console.log(data);
+        $scope.receivedTrades = data;
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  }
   $scope.deleteBook = function(book, idx) {
     Book.deleteBook(book)
     .success(function(data) {
@@ -147,8 +167,10 @@ app.controller('tradeCtrl', function($scope, $rootScope, $state, $stateParams, B
       $scope.tradeData = {
         tradeInitiator: $rootScope.currentUserData.twitter.username,
         tradeReceiver: $scope.requestedBook.ownerUsername,
-        initiatorBook: $scope.targetedBook._id,
-        receiverBook: $scope.requestedBook._id
+        initiatorBookID: $scope.targetedBook._id,
+        initiatorBookTitle: $scope.targetedBook.title,
+        receiverBookID: $scope.requestedBook._id,
+        receiverBookTitle: $scope.requestedBook.title
       };
       Trade.createTrade($scope.tradeData)
       .success(function(data) {
@@ -194,6 +216,12 @@ app
   Trade.createTrade = function(tradeData) {
     return $http.post(urls.apiUrl + '/trades', tradeData);
   };
+  Trade.getInitiatedTrades = function(activeUser) {
+    return $http.get(urls.apiUrl + '/trades/initiated/' + activeUser)
+  }
+  Trade.getRequestedTrades = function(activeUser) {
+    return $http.get(urls.apiUrl + '/trades/requested/' + activeUser)
+  }
 
   return Trade;
 });

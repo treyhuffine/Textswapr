@@ -27,7 +27,7 @@
         </div>
       </div>
     </div>
-    <div class="col m7">
+    <div class="col m8">
       <h4>Available Books:</h4>
       <ul class="collection">
         <li ng-repeat="book in userBooks track by $index" class="collection-item avatar">
@@ -41,6 +41,18 @@
             <span ng-show='currentUserData.twitter.username === user.twitter.username'><a ng-click="deleteBook(book, $index)" class="waves-effect waves-teal btn secondary-content"><i class="material-icons">swap_horiz</i>Delete Book</a></span>
           </span>
         </li>
+      </ul>
+    </div>
+    <div class="col m4" ng-show="receivedTrades">
+      Received Trades:
+      <ul>
+        <li ng-repeat="receivedTrade in receivedTrades">{{receivedTrade.receiverBookTitle}}</li>
+      </ul>
+    </div>
+    <div class="col m4" ng-show="sentTrades">
+      Sent Trades:
+      <ul>
+        <li ng-repeat="sentTrade in sentTrades">{{sentTrade.initiatorBookTitle}}</li>
       </ul>
     </div>
   </div>

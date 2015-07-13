@@ -1,5 +1,5 @@
 app
-.controller('profileCtrl', function($scope, $rootScope, $state, $stateParams, User, Book) {
+.controller('profileCtrl', function($scope, $rootScope, $state, $stateParams, User, Book, Trade) {
   $scope.user = {};
   $scope.userBooks = [];
 
@@ -18,6 +18,26 @@ app
     .catch(function(error) {
       console.log(error);
     });
+  if ($rootScope.currentUser && $stateParams.username.toLowerCase() === $rootScope.currentUserData.twitter.username.toLowerCase()) {
+    Trade.getInitiatedTrades($rootScope.currentUserData.twitter.username)
+      .success(function(data) {
+        console.log(data);
+        $scope.sentTrades = data;
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  }
+  if ($rootScope.currentUser && $stateParams.username.toLowerCase() === $rootScope.currentUserData.twitter.username.toLowerCase()) {
+    Trade.getRequestedTrades($rootScope.currentUserData.twitter.username)
+      .success(function(data) {
+        console.log(data);
+        $scope.receivedTrades = data;
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  }
   $scope.deleteBook = function(book, idx) {
     Book.deleteBook(book)
     .success(function(data) {
