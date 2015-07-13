@@ -7,6 +7,24 @@ app.run(function($rootScope) {
 });
 
 app
+.config(function($stateProvider, $urlRouterProvider, $locationProvider){
+  // $locationProvider.html5Mode({enabled: true, requireBase: false});
+
+  $urlRouterProvider.otherwise('/');
+  $stateProvider
+  .state('home', {url: '/', templateUrl: '/templates/home.html', controller: 'rootCtrl'})
+  .state('showUser', {url: '/users/:username', templateUrl: '/templates/profile.html', controller: 'profileCtrl'})
+  .state('addBook', {url: '/books/new', templateUrl: '/templates/addBook.html', controller: 'submitBookCtrl'})
+  .state('findBooks', {url: '/books', templateUrl: '/templates/bookIndex.html', controller: 'bookIndexCtrl'})
+  .state('initiateTrade', {url: '/trades/:bookId', templateUrl: '/templates/trade.html', controller: 'tradeCtrl'});
+});
+
+app
+.constant('urls',{
+  'apiUrl': ''
+});
+
+app
 .controller("bookIndexCtrl", function($scope, $rootScope, Book, User) {
   $scope.books = [];
   Book.getBooks()
@@ -125,7 +143,7 @@ app.controller('tradeCtrl', function($scope, $rootScope, $state, $stateParams, B
   }
   $scope.createTrade = function() {
     console.log("Starting trade");
-    // if ($scope.targetedBook.length > 0) {
+    if (!$scope.showBookList) {
       $scope.tradeData = {
         tradeInitiator: $rootScope.currentUserData.twitter.username,
         tradeReceiver: $scope.requestedBook.ownerUsername,
@@ -140,26 +158,8 @@ app.controller('tradeCtrl', function($scope, $rootScope, $state, $stateParams, B
       .catch(function(error) {
         console.log(error);
       })
-    // }
+    }
   };
-});
-
-app
-.config(function($stateProvider, $urlRouterProvider, $locationProvider){
-  // $locationProvider.html5Mode({enabled: true, requireBase: false});
-
-  $urlRouterProvider.otherwise('/');
-  $stateProvider
-  .state('home', {url: '/', templateUrl: '/templates/home.html', controller: 'rootCtrl'})
-  .state('showUser', {url: '/users/:username', templateUrl: '/templates/profile.html', controller: 'profileCtrl'})
-  .state('addBook', {url: '/books/new', templateUrl: '/templates/addBook.html', controller: 'submitBookCtrl'})
-  .state('findBooks', {url: '/books', templateUrl: '/templates/bookIndex.html', controller: 'bookIndexCtrl'})
-  .state('initiateTrade', {url: '/trades/:bookId', templateUrl: '/templates/trade.html', controller: 'tradeCtrl'});
-});
-
-app
-.constant('urls',{
-  'apiUrl': ''
 });
 
 app

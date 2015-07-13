@@ -107,16 +107,16 @@ var routes = function(passport, mongoose) {
   router.post('/trades', function(req, res, next) {
     var trade = new Trade(req.body);
     console.log(trade);
-    // if (trade.tradeInitiator === trade.tradeReceiver) {
-    //   res.status(404).json({error: "Can't swap yourself"})
-    // }
+    if (trade.tradeInitiator === trade.tradeReceiver) {
+      res.status(404).json({error: "Can't swap yourself"});
+      return;
+    }
     trade.save(function(err, savedTrade) {
       console.log(savedTrade);
       if (err) {
         res.status(400).json({error: "Swap failed"});
       }
       res.json(savedTrade);
-      // res.redirect('/');
     });
   });
 
