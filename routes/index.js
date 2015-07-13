@@ -141,9 +141,17 @@ var routes = function(passport, mongoose) {
           ownerDisplayName: openTrades[1].ownerDisplayName,
           ownerId: openTrades[1].ownerId
         };
-        Book.findOneAndUpdate({'_id': tradeSenderBook}, newReceiver, { new: true }, function(err, newBook) {
-          Book.findOneAndUpdate({'_id': tradeReceiverBook}, newSender, { new: true }, function(err, newBook) {
-            res.json(acceptedTrade);
+        Book.findOneAndUpdate({'_id': tradeSenderBook}, newReceiver, { new: true }, function(err, newBook1) {
+          Book.findOneAndUpdate({'_id': tradeReceiverBook}, newSender, { new: true }, function(err, newBook2) {
+            Trade.findAndUpdate({initiatorBookID: tradeSenderBook}, {tradeOpen: false}, {new: true}, function(err, closedTrades1) {
+              Trade.findAndUpdate({receiverBookID: tradeSenderBook}, {tradeOpen: false}, {new: true}, function(err, closedTrades1) {
+                Trade.findAndUpdate({initiatorBookID: tradeReceiverBook}, {tradeOpen: false}, {new: true}, function(err, closedTrades1) {
+                  Trade.findAndUpdate({receiverBookID: tradeReceiverBook}, {tradeOpen: false}, {new: true}, function(err, closedTrades1) {
+                    res.json(acceptedTrade);
+                  })
+                })
+              })
+            })
           });
         });
       })
