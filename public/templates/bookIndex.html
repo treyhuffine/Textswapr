@@ -1,7 +1,7 @@
 <!--<div class="container">-->
 <div class='row books'>
   <div ng-repeat="book in books">
-      <div class="card col s6 l3 m5 offset-l1 offset-m1 offset-s3 book-container">
+      <div class="card col s6 l3 m5 offset-l1 offset-m1 offset-s3 book-container" ng-if="!(currentUserData.twitter.username.toLowerCase() === book.ownerUsername.toLowerCase())">
         <div class="card-image waves-effect waves-block waves-light">
           <img class="book-img activator" src="{{book.img}}">
         </div>
@@ -22,7 +22,6 @@
           </ul>
           <div>Contact {{book.ownerDisplayName}} for a trade</div>
           <div class='trade-button'>
-            {{checkId(book._id)}}
             <span><a ui-sref="initiateTrade({bookId: book._id})" class="waves-effect waves-light btn">Offer Trade</a></span>
           </div>
         </div>
