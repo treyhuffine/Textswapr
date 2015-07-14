@@ -101,8 +101,9 @@ h1, h2, h3, h4, h5 {
 .brand-logo {
   margin-left: 20px;
 }
-#trash-button {
+.trash-button {
   margin-top: 7px !important;
+  margin-left: 7px !important;
 }
 .material-icons.orange600 { color: rgb(251, 154, 0); }
 .divider.bookcard {
