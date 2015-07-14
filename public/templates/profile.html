@@ -9,7 +9,7 @@
           </h4>
         </li>
         <li class='collection-item'>
-            {{user.twitter.username}}
+            @&nbsp{{user.twitter.username}}
         </li>
         <li class='collection-item'>
             {{user.twitter.location}}
@@ -22,12 +22,9 @@
         <div class='dash-links'>
           <a ui-sref='findBooks' class="waves-effect waves-teal btn">Browse Books</a>
         </div>
-        <div class='dash-links'>
-          <a class="waves-effect waves-teal btn">Pending Trades</a>
-        </div>
       </div>
     </div>
-    <div class="col m8">
+    <div class="col l8 m12 s12 aval-books">
       <h4>Available Books:</h4>
       <ul class="collection">
         <li ng-repeat="book in userBooks track by $index" class="collection-item avatar">
@@ -37,8 +34,15 @@
             {{book.edition}}
           </p>
           <span ng-show='currentUser'>
-            <span ng-hide="currentUserData.twitter.username === user.twitter.username"><a ui-sref="initiateTrade({bookId: book._id})" class="waves-effect waves-teal btn secondary-content"><i class="material-icons">swap_horiz</i>Initiate Swap</a></span>
-            <span ng-show='currentUserData.twitter.username === user.twitter.username'><a ng-click="deleteBook(book, $index)" class="waves-effect waves-teal btn secondary-content"><i class="material-icons">swap_horiz</i>Delete Book</a></span>
+            <script>
+              $(document).ready(function(){
+                $('.tooltipped').tooltip({delay: 20});
+              });
+            </script>
+            <span ng-hide="currentUserData.twitter.username === user.twitter.username">
+              <a style="cursor: pointer;" ui-sref="initiateTrade({bookId: book._id})" class="waves-effect waves-teal btn-floating secondary-content tooltipped"data-position="bottom" data-delay="50" data-tooltip="Make a Swap"><i class="material-icons">swap_horiz</i></a>
+            </span>
+            <span ng-show='currentUserData.twitter.username === user.twitter.username'><a ng-click="deleteBook(book, $index)" class="waves-effect waves-teal btn-floating red secondary-content tooltipped" data-position="bottom" data-delay="20" data-tooltip="Delete book"><i class="material-icons">delete</i></a></span>
           </span>
         </li>
       </ul>

@@ -85,9 +85,11 @@ h1, h2, h3, h4, h5 {
   line-height: normal !important;
 }
 
+/*
 .dashboard {
   height: 92vh;
 }
+*/
 .dash-links a {
   margin-top: 10px;
   margin-bottom: 10px;
@@ -116,9 +118,12 @@ h1, h2, h3, h4, h5 {
   width: 99%
 }
 .col.borders {
-  height: 100vh;
+  height: 100%;
+  margin-top: 20px;
+  margin-bottom: 50px;
   border-right: 1px inset white !important;
   border-left: 1px inset white;
+  padding-bottom: 50px;
 }
 .trade-title.info {
   margin-top: 50px;
@@ -127,3 +132,20 @@ h1, h2, h3, h4, h5 {
   margin-top: 15px;
   border-top-color: color: rgb(251, 154, 0);
 }
+.mobile-headline {
+  margin-top: 10px;
+}
+.mobile-headline {
+  color: rgba(221, 247, 242, 0.78);
+}
+.contactuser{
+  margin-top: 20px;
+}
+.tradetitle {
+  font-weight: 400;
+}
+/*
+.aval-books {
+  margin-top: 20px;
+}
+*/

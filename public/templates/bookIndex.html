@@ -26,7 +26,8 @@
             <li><strong>Condition:</strong> {{book.condition}}</li>
             <li><strong>Subject:</strong> {{book.subject}}</li>
           </ul>
-          <div>Contact {{book.ownerDisplayName}} for a trade</div>
+          <div class="divider orange darken-1"></div>
+          <div class="contactuser">Contact {{book.ownerDisplayName}} for a trade</div>
           <div class='trade-button'>
             <span><a ui-sref="initiateTrade({bookId: book._id})" class="waves-effect waves-light btn">Offer Trade</a></span>
           </div>

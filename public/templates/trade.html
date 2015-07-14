@@ -8,7 +8,7 @@
               </div>
               <div class="divider trade-info"></div>
               <div class="card-content">
-                <p>{{requestedBook.title}}</p>
+                <p class='tradetitle'>{{requestedBook.title}}</p>
                 <p>{{requestedBook.author}}</p>
               </div>
             </div>
@@ -23,11 +23,12 @@
           <div ng-hide="showBookList" class="col s12 m4">
             <h4>Trading:</h4>
             <div class="card">
-              <div class="card-image">
+              <div class="card-image trade">
                 <img ng-src="{{targetedBook.img}}">
               </div>
+              <div class="divider trade-info"></div>
               <div class="card-content">
-                <p>{{targetedBook.title}}</p>
+                <p class='tradetitle'>{{targetedBook.title}}</p>
                 <p>{{targetedBook.author}}</p>
               </div>
             </div>
