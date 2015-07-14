@@ -1,32 +1,40 @@
 <div class="profile-container">
-  <div class="row dashboard">
-    <div class="col m11 s11 l4 dashboard">
-      <img class="profile-image" ng-src="{{user.twitter.profileImageUrl}}" alt="Profile"/>
-      <span class="dash-list" style="margin-right: 0;">
-        <ul class="collection with-header">
-          <li class='collection-header'>
-            <h6 class="profile-displayname">
-              {{user.twitter.displayName}}
-            </h6>
-          </li>
-          <li class='collection-item'>
-              @&nbsp{{user.twitter.username}}
-          </li>
-          <li class='collection-item'>
-              {{user.twitter.location}}
-          </li>
+  <div class="row">
+    <div class="col m11 s11 l4 dashboard z-depth-2">
+      <img class="profile-image z-depth-1" ng-src="{{user.twitter.profileImageUrl}}" alt="Profile"/>
+      <div class="dash-list">
+        <ul class="dash-list-sections">
+          <div class="dash-section">
+            <li class='dash-section'>
+              <h6 class="profile-displayname">
+                {{user.twitter.displayName}}
+              </h6>
+              <!-- <div class="divider"></div> -->
+            </li>
+          </div>
+          <hr>
+          <div class="dash-section">
+            <li class='dash-section'>
+                @&nbsp{{user.twitter.username}}
+                <!-- <div class="divider"></div> -->
+            </li>
+          </div>
+          <hr>
+          <div class="dash-section">
+            <li>
+                {{user.twitter.location}}
+            </li>
+          </div>
         </ul>
-      </span>
-      <div class='profile-buttons' ng-show='currentUser && currentUserData.twitter.username === user.twitter.username'>
-        <div class='dash-links'>
-          <a ui-sref='addBook' class="waves-effect waves-teal btn">Submit Book</a>
-        </div>
-        <div class='dash-links'>
-          <a ui-sref='findBooks' class="waves-effect waves-teal btn">Browse Books</a>
-        </div>
       </div>
-    </div>
-    <div class="col l6 m12 s12 offset-l1">
+      <div class='profile-buttons' ng-show='currentUser && currentUserData.twitter.username === user.twitter.username'>
+        <span class='dash-links'>
+          <a ui-sref='addBook' class="waves-effect waves-teal btn">Submit Book</a>
+        </span>
+        <span class='dash-links'>
+          <a ui-sref='findBooks' class="waves-effect waves-teal btn">Browse Books</a>
+        </span>
+      </div>
     <div class="aval-books">
       <h4>Available Books:</h4>
       <ul class="collection">
@@ -50,6 +58,8 @@
         </li>
       </ul>
     </div>
+    </div>
+    <div class="col l6 m12 s12 offset-l1">
 
     <div ng-show="receivedTrades">
       <h4 class="title-available">Received Trades:</h4>

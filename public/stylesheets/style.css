@@ -32,11 +32,16 @@ h1, h2, h3, h4, h5 {
   margin-top: 5px;
 }
 .profile-image {
-  width: 200px;
+  width: 150px;
+  margin-top: 20px;
+  border-radius: 3px;
 }
 .profile-container {
   margin-top: 20px;
   margin-left: 30px;
+}
+.profile-buttons {
+  margin-bottom: 10px;
 }
 .material-icons {
   font-size: 20px;
@@ -85,11 +90,35 @@ h1, h2, h3, h4, h5 {
   line-height: normal !important;
 }
 
-/*
+
 .dashboard {
-  height: 92vh;
+  background-color: #fff;
+  padding-bottom: 10px;
+  margin-top: 1%;
 }
-*/
+
+.dash-list {
+  overflow: auto;
+  display: inline-block;
+  vertical-align: top;
+  /*background-color: white;*/
+  padding-left: 10px;
+  padding-right: 10px;
+  /*height: 150px;*/
+  width: 250px;
+  border-radius: 5px;
+  /*border: 1px solid rgb(177, 177, 177);*/
+  vertical-align: text-bottom;
+}
+.dash-section {
+  height: 33.33% !important;
+  vertical-align: bottom;
+}
+.dash-list-sections {
+  margin-top: 0;
+  margin-bottom: 0;
+  height: 100%;
+}
 .dash-links a {
   margin-top: 10px;
   margin-bottom: 10px;
