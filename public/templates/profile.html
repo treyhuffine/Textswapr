@@ -48,8 +48,8 @@
       </ul>
     </div>
 
-    <div class="col l4 m8 s12" ng-show="receivedTrades">
-      Received Trades:
+    <div class="col l6 s12" ng-show="receivedTrades">
+      <h4 class="title-available">Received Trades:</h4>
       <ul class="collection">
         <li class="collection-item"  ng-repeat="receivedTrade in receivedTrades track by $index">
           <span class="title" style="display: inline-block;">
@@ -58,14 +58,19 @@
           </p>
           </span>
           <span ng-show='currentUser'>
-            <span><a ng-click="deleteTrade(receivedTrade, $index, 'received')" class="btn-floating btn-small waves-effect waves-light red secondary-content trash-button" style="margin-top: 7px !important;"><i class="material-icons">delete</i>&nbsp</a></span>
-            <span><a ng-click="acceptTrade(receivedTrade, $index)" class="btn-floating btn-small waves-effect waves-light green secondary-content trash-button" style="margin-top: 7px !important;"><i class="material-icons">add</i></a></span>
+            <script>
+              $(document).ready(function(){
+                $('.tooltipped').tooltip({delay: 20});
+              });
+            </script>
+            <span><a ng-click="deleteTrade(receivedTrade, $index, 'received')" class="btn-floating btn-small waves-effect waves-light red secondary-content trash-button tooltipped" data-position="bottom" data-delay="20" data-tooltip="Refuse Swap" style="margin-top: 7px !important;"><i class="material-icons">delete</i>&nbsp</a></span>
+            <span><a ng-click="acceptTrade(receivedTrade, $index)" class="btn-floating btn-small waves-effect waves-light green secondary-content trash-button tooltipped"data-position="bottom" data-delay="50" data-tooltip="Accept Swap" style="margin-top: 7px !important;"><i class="material-icons">add</i></a></span>
           </span>
         </li>
       </ul>
     </div>
      <div class="col l4 m8 s12" ng-show="sentTrades">
-      Sent Trades:
+       <h4 class="title-available">Sent Trades:</h4>
       <ul class="collection">
         <li class="collection-item"  ng-repeat="sentTrade in sentTrades track by $index">
           <span class="title" style="display: inline-block;">
@@ -74,7 +79,12 @@
           </p>
           </span>
           <span ng-show='currentUser'>
-            <span><a ng-click="deleteTrade(sentTrade, $index, 'sent')" id='trash-button' class="btn-floating btn-small waves-effect waves-light red secondary-content" style="margin-top: 7px !important;"><i class="material-icons">delete</i></a></span>
+            <script>
+              $(document).ready(function(){
+                $('.tooltipped').tooltip({delay: 20});
+              });
+            </script>
+            <span><a ng-click="deleteTrade(sentTrade, $index, 'sent')" id='trash-button' class="btn-floating btn-small waves-effect waves-light red secondary-content tooltipped"data-position="bottom" data-delay="50" data-tooltip="Delete this swap" style="margin-top: 7px !important;"><i class="material-icons">delete</i></a></span>
           </span>
         </li>
       </ul>
