@@ -29,9 +29,9 @@
       <ul class="collection">
         <li ng-repeat="book in userBooks track by $index" class="collection-item avatar">
           <img ng-src="{{book.img}}" alt="" class="circle">
-          <span class="title">{{book.title}}</span>
+          <span class="tradetitle">{{book.title}}</span>
           <p>{{book.author}} <br>
-            {{book.edition}}
+            Edition:&nbsp{{book.edition}}
           </p>
           <span ng-show='currentUser'>
             <script>

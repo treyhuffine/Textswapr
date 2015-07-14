@@ -144,6 +144,9 @@ h1, h2, h3, h4, h5 {
 .tradetitle {
   font-weight: 400;
 }
+title-available {
+  font-weight: 400;
+}
 /*
 .aval-books {
   margin-top: 20px;
