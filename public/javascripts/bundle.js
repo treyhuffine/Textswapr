@@ -189,6 +189,10 @@ app.controller('tradeCtrl', function($scope, $rootScope, $state, $stateParams, B
     $scope.targetedBook = book;
     $scope.showBookList = false;
   }
+  $scope.untargetBook = function (book) {
+    $scope.targetedBook = {};
+    $scope.showBookList = true;
+  }
   $scope.createTrade = function() {
     console.log("Starting trade");
     if (!$scope.showBookList) {
