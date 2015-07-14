@@ -1,20 +1,22 @@
 <div class="profile-container">
   <div class="row dashboard">
-    <div class="col m4 s4 l4 dashboard">
+    <div class="col m11 s11 l4 dashboard">
       <img class="profile-image" ng-src="{{user.twitter.profileImageUrl}}" alt="Profile"/>
-      <ul class="collection with-header">
-        <li class='collection-header'>
-          <h4 class="profile-displayname">
-            {{user.twitter.displayName}}
-          </h4>
-        </li>
-        <li class='collection-item'>
-            @&nbsp{{user.twitter.username}}
-        </li>
-        <li class='collection-item'>
-            {{user.twitter.location}}
-        </li>
-      </ul>
+      <span class="dash-list" style="margin-right: 0;">
+        <ul class="collection with-header">
+          <li class='collection-header'>
+            <h6 class="profile-displayname">
+              {{user.twitter.displayName}}
+            </h6>
+          </li>
+          <li class='collection-item'>
+              @&nbsp{{user.twitter.username}}
+          </li>
+          <li class='collection-item'>
+              {{user.twitter.location}}
+          </li>
+        </ul>
+      </span>
       <div class='profile-buttons' ng-show='currentUser && currentUserData.twitter.username === user.twitter.username'>
         <div class='dash-links'>
           <a ui-sref='addBook' class="waves-effect waves-teal btn">Submit Book</a>
@@ -24,7 +26,8 @@
         </div>
       </div>
     </div>
-    <div class="col l8 m12 s12 aval-books">
+    <div class="col l6 m12 s12 offset-l1">
+    <div class="aval-books">
       <h4>Available Books:</h4>
       <ul class="collection">
         <li ng-repeat="book in userBooks track by $index" class="collection-item avatar">
@@ -48,7 +51,7 @@
       </ul>
     </div>
 
-    <div class="col l8 m12 s12" ng-show="receivedTrades">
+    <div ng-show="receivedTrades">
       <h4 class="title-available">Received Trades:</h4>
       <ul class="collection">
         <li class="collection-item"  ng-repeat="receivedTrade in receivedTrades track by $index">
@@ -69,7 +72,7 @@
         </li>
       </ul>
     </div>
-     <div class="col l8 m12 s12" ng-show="sentTrades">
+     <div ng-show="sentTrades">
        <h4 class="title-available">Sent Trades:</h4>
       <ul class="collection">
         <li class="collection-item"  ng-repeat="sentTrade in sentTrades track by $index">
@@ -89,5 +92,6 @@
         </li>
       </ul>
     </div>
+  </div>
   </div>
 </div>
