@@ -14,6 +14,7 @@ h1, h2, h3, h4, h5 {
   background-size: cover;
   background-repeat: no-repeat;
   height: 91.5vh;
+  width: 100vw;
 }
 .card .card-content .card-title {
   line-height: 4px !important;
@@ -63,7 +64,7 @@ h1, h2, h3, h4, h5 {
 }
 .splash-browse {
   text-align: center;
-  margin-top: 2vh;
+  margin-top: 1.4vh;
   margin-bottom: 2.5vh;
 }
 .splash-or {
