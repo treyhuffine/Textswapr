@@ -180,6 +180,9 @@ h1, h2, h3, h4, h5 {
 title-available {
   font-weight: 400;
 }
+.cancel-trade {
+  margin-top: 10px;
+}
 /*
 .aval-books {
   margin-top: 20px;

@@ -19,7 +19,7 @@
             <p>Receiving: {{requestedBook.title}}</p>
             <p>Sending: {{targetedBook.title || "Select a book"}}</p>
             <span ng-hide="showBookList"><a ng-click='createTrade()' class="waves-effect waves-teal btn secondary-content">Create Trade</a></span>
-            <span ng-hide="showBookList"><a ng-click='untargetBook()' class="waves-effect waves-teal btn secondary-content">Select Different Book</a></span>
+            <span ng-hide="showBookList"><a ng-click='untargetBook()' class="red lighten-1 waves-effect waves-red btn secondary-content cancel-trade">Select Different Book</a></span>
           </div>
           <div ng-hide="showBookList" class="col s12 m4">
             <h4>Trading:</h4>
