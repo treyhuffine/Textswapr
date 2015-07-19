@@ -50,7 +50,6 @@ var routes = function(passport, mongoose) {
       if (!book) {
         res.status(404);
       }
-      console.log(book);
       res.json(book);
     })
   });
@@ -87,11 +86,9 @@ var routes = function(passport, mongoose) {
     })
   });
   router.get('/currentUserData', function(req, res) {
-    console.log(req.user);
     res.json(req.user);
   });
   router.delete('/books/:id', function(req, res, next) {
-    console.log(req.params.id);
     Book.findOneAndRemove({ '_id': req.params.id}, function (err, book){
       if (err) {
         console.log(err);
@@ -100,13 +97,11 @@ var routes = function(passport, mongoose) {
       if (!book) {
         res.status(404);
       }
-      console.log("Deleted: " + book);
       res.json({ success: "book deleted" });
     })
   });
   router.patch('/trades/remove/:id', function(req, res, next) {
     Trade.findOneAndUpdate({ '_id': req.params.id }, { tradeOpen: false }, { new: true }, function(err, deniedTrade) {
-      console.log(err, deniedTrade);
       if (err) {
         console.log(err);
         res.status(400).json({ error: "Could not read trade data" });
@@ -170,15 +165,12 @@ var routes = function(passport, mongoose) {
     });
   });
   router.post('/trades', function(req, res, next) {
-    console.log(req.body);
     var trade = new Trade(req.body);
-    console.log(trade);
     // if (trade.tradeInitiator === trade.tradeReceiver) {
     //   res.status(404).json({error: "Can't swap yourself"});
     //   return;
     // }
     trade.save(function(err, savedTrade) {
-      console.log(savedTrade);
       if (err) {
         res.status(400).json({error: "Swap failed"});
       }
@@ -186,7 +178,6 @@ var routes = function(passport, mongoose) {
     });
   });
   router.get('/trades/initiated/:username', function(req, res, next) {
-    console.log(req.params);
     Trade.find({ tradeInitiatorUsername: req.params.username, tradeOpen: true }).exec(function(err, trades) {
       if (err) {
         res.status(400).json({error: "Could not find swap"});

@@ -78,7 +78,6 @@ app
     if ($stateParams.username.toLowerCase() === $rootScope.currentUserData.twitter.username.toLowerCase()) {
         Trade.getInitiatedTrades($rootScope.currentUserData.twitter.username)
           .success(function(data) {
-            console.log(data);
             $scope.sentTrades = data;
           })
           .catch(function(error) {
@@ -193,7 +192,6 @@ app.controller('tradeCtrl', function($scope, $rootScope, $state, $stateParams, B
     $scope.showBookList = true;
   }
   $scope.createTrade = function() {
-    console.log("Starting trade");
     if (!$scope.showBookList) {
       $scope.tradeData = {
         tradeInitiatorUsername: $rootScope.currentUserData.twitter.username,
@@ -207,13 +205,8 @@ app.controller('tradeCtrl', function($scope, $rootScope, $state, $stateParams, B
         receiverBookID: $scope.requestedBook._id,
         receiverBookTitle: $scope.requestedBook.title
       };
-      console.log('data', $scope.tradeData);
-      console.log($rootScope.currentUserData);
-      console.log($scope.requestedBook);
       Trade.createTrade($scope.tradeData)
       .success(function(data) {
-        console.log(data)
-        console.log($rootScope.currentUserData.twitter.username);
         $state.go('showUser', {username: $rootScope.currentUserData.twitter.username});
       })
       .catch(function(error) {
@@ -240,7 +233,6 @@ app
     return $http.delete(urls.apiUrl + "/books/" + removedBook._id);
   };
   Book.getBook = function(bookId) {
-    console.log("bookId: ", bookId);
     return $http.get(urls.apiUrl + "/books/" + bookId);
   };
 
@@ -261,11 +253,9 @@ app
     return $http.get(urls.apiUrl + '/trades/requested/' + activeUser)
   }
   Trade.removeTrade = function(deniedTrade) {
-    console.log(deniedTrade._id);
     return $http.patch(urls.apiUrl + '/trades/remove/' + deniedTrade._id)
   }
   Trade.acceptTrade = function(acceptedTrade) {
-    console.log(acceptedTrade._id);
     return $http.patch(urls.apiUrl + '/trades/accept/' + acceptedTrade._id)
   }
 

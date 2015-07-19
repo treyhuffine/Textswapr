@@ -29,7 +29,6 @@ app.controller('tradeCtrl', function($scope, $rootScope, $state, $stateParams, B
     $scope.showBookList = true;
   }
   $scope.createTrade = function() {
-    console.log("Starting trade");
     if (!$scope.showBookList) {
       $scope.tradeData = {
         tradeInitiatorUsername: $rootScope.currentUserData.twitter.username,
@@ -43,13 +42,8 @@ app.controller('tradeCtrl', function($scope, $rootScope, $state, $stateParams, B
         receiverBookID: $scope.requestedBook._id,
         receiverBookTitle: $scope.requestedBook.title
       };
-      console.log('data', $scope.tradeData);
-      console.log($rootScope.currentUserData);
-      console.log($scope.requestedBook);
       Trade.createTrade($scope.tradeData)
       .success(function(data) {
-        console.log(data)
-        console.log($rootScope.currentUserData.twitter.username);
         $state.go('showUser', {username: $rootScope.currentUserData.twitter.username});
       })
       .catch(function(error) {
