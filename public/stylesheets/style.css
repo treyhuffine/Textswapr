@@ -59,13 +59,13 @@ h1, h2, h3, h4, h5 {
 }
 .splash-login, .splash-view {
   text-align: center;
-  margin-top: 1.5vh;
-  margin-bottom: 2.5vh;
+  margin-top: 1vh;
+  margin-bottom: 2vh;
 }
 .splash-browse {
   text-align: center;
   margin-top: 1.5vh;
-  /*margin-bottom: 2.5vh;*/
+  margin-bottom: 2vh;
 }
 .splash-or {
   border-top: 1px solid gray;
