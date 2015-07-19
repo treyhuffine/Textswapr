@@ -13,7 +13,7 @@ h1, h2, h3, h4, h5 {
   background-image: url(/img/lib.jpg);
   background-size: cover;
   background-repeat: no-repeat;
-  height: 91.5vh;
+  height: 91vh;
   width: 100vw;
 }
 .card .card-content .card-title {
@@ -59,7 +59,7 @@ h1, h2, h3, h4, h5 {
 }
 .splash-login, .splash-view {
   text-align: center;
-  margin-top: 1vh;
+  margin-top: 1.5vh;
   margin-bottom: 2vh;
 }
 .splash-browse {
