@@ -13,7 +13,7 @@ h1, h2, h3, h4, h5 {
   background-image: url(/img/lib.jpg);
   background-size: cover;
   background-repeat: no-repeat;
-  height: 92vh;
+  height: 91.5vh;
 }
 .card .card-content .card-title {
   line-height: 4px !important;
@@ -78,7 +78,8 @@ h1, h2, h3, h4, h5 {
 .opacity-wrapper {
   background-color: rgba(0, 0, 0, 0.53) !important;
   width: 100vw;
-  height: 92vh;
+  height: 91.5vh;
+
 }
 .textswap-wrapper {
   color: rgba(221, 247, 242, 0.78);
